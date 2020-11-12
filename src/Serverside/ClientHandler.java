@@ -22,13 +22,12 @@ public class ClientHandler extends Thread {
 
             String input;
 
-            for (int i = 0; i < 5; i++) {
+
                 out.println("Hur många bultar finns det i Ölandsbron?");
                 out.println("1. 1231231");
                 out.println("2. 2342342");
                 out.println("3. 131223");
                 out.println("4. 9824294");
-            }
 
 
             while ((input = in.readLine()) != null) {
