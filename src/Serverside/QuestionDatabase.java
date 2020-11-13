@@ -216,70 +216,70 @@ public class QuestionDatabase {
             "Gyllene Tider");
 
     //Culture-related questions
-    public static Question q1cult = new Question(Category.MUSIC,
+    public static Question q1cult = new Question(Category.CULTURE,
             "Vem är den mest framgångsrika spanska filmskapare i sin generation?",
             "Guillermo del Toro",
             "Gonzáles Iñárritu",
             "Alfonso Cuaron",
             "Pedro Almodovar");
 
-    public static Question q2cult = new Question(Category.MUSIC,
+    public static Question q2cult = new Question(Category.CULTURE,
             "Vilken serie handlar om ett slott som ägs av familjen Crawley?",
             "The Crown",
             "The Haunting of Bly Manor",
             "Mad men",
             "Downtown Abbey");
 
-    public static Question q3cult = new Question(Category.MUSIC,
+    public static Question q3cult = new Question(Category.CULTURE,
             "Vilken film är baserad på Georg VI:s svårigheter med att hålla tal?",
             "The Tudors",
             "Reign",
             "The Crown",
             "The King's Speech");
 
-    public static Question q4cult = new Question(Category.MUSIC,
+    public static Question q4cult = new Question(Category.CULTURE,
             "I vilken stad ligger det världsberömda operahuset La Scaglia?",
             "Rom",
             "Neapel",
             "Nice",
             "Milano");
 
-    public static Question q5cult = new Question(Category.MUSIC,
+    public static Question q5cult = new Question(Category.CULTURE,
             "Vilken festival arrangeras sedan 1810 och anses vara världens största folkfest?",
             "Eurovision",
             "Tomorrowland",
             "Ferie Messium",
             "Oktoberfest");
 
-    public static Question q6cult = new Question(Category.MUSIC,
+    public static Question q6cult = new Question(Category.CULTURE,
             "Vilken är Storbritanniens nationalmuseem för modern konst i London?",
             "The Brittish Museum",
             "The National Gallery",
             "Royal Academy of Arts",
             "Tate Modern");
 
-    public static Question q7cult = new Question(Category.MUSIC,
+    public static Question q7cult = new Question(Category.CULTURE,
             "Vilken är fortfattern till romanen Dorian Greys porträtt?",
             "Emily Dickinson",
             "Jane Austen",
             "Charles Dickens",
             "Oscar Wilde");
 
-    public static Question q8cult = new Question(Category.MUSIC,
+    public static Question q8cult = new Question(Category.CULTURE,
             "Vilken konstnär skapade statyn David?",
             "Leonardo Da Vinci",
             "Rafael",
             "El greco",
             "Michelangelo");
 
-    public static Question q9cult = new Question(Category.MUSIC,
+    public static Question q9cult = new Question(Category.CULTURE,
             "Vilken konstnär tillhör inte konstinrikningen impressionism?",
             "Claude Monet",
             "Auguste Renoir",
             "Edgar Degas",
             "Pablo Picasso");
 
-    public static Question q10cult = new Question(Category.MUSIC,
+    public static Question q10cult = new Question(Category.CULTURE,
             "lken författare har INTE vunnit nobelpriset i litteratur?",
             "Bob Dylan",
             "Vargas Llosa",
