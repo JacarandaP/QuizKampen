@@ -18,7 +18,7 @@ public class Client {
 
             String input;
 
-            while ((input = in.readLine()) != null) {   
+            while ((input = in.readLine()) != null) {
                 System.out.println(input);
 
             }
