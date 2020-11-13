@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding ="UTF 8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun. dtd /properties.dtd>
+<properties>
+<comment> Skriver en kommentar</comment>
+<entry key="fontName">SansSerif</entry>
+<entry key="fontSize">34</entry>
+<entry key="fontStyle">BOLD</entry>
+<entry key="message">Hej from XML file</entry>
+</properties>
