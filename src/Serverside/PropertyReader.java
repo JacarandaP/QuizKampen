@@ -10,7 +10,6 @@ public class PropertyReader {
     private int numberOfRounds;
     private int numberOfQuestions;
 
-
     public PropertyReader() {
         Properties p = new Properties();
         try {
