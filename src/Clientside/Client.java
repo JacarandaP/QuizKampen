@@ -2,6 +2,8 @@ package Clientside;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -26,8 +28,11 @@ public class Client extends JFrame {
 
 
 
+
+
     public Client() {
-        setUpGUI(true);
+        setUpCategory(false);
+        setUpQuestions(true);
 
         try (Socket socketToServer = new Socket(hostName, port);
              PrintWriter out = new PrintWriter(socketToServer.getOutputStream(), true);
@@ -47,7 +52,7 @@ public class Client extends JFrame {
 
     }
 
-    private void setUpGUI(boolean state){
+    private void setUpCategory(boolean state){
         JFrame frame = new JFrame("Quizkampen");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 300);
@@ -100,6 +105,74 @@ public class Client extends JFrame {
         frame.setVisible(state);
 
     }
+
+    private void setUpQuestions(boolean state){
+        JFrame frame = new JFrame("Quizkampen");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(300, 300);
+
+        JPanel namePanel = new JPanel();
+        namePanel.setBackground(Color.RED);
+        JPanel gamePanel = new JPanel();
+        JPanel statusPanel = new JPanel();
+        JPanel winnersPanel = new JPanel();
+
+        JLabel nameLabel = new JLabel("Name:");
+        txtName = new JTextField(15);
+        nameButton = new JButton("Save");
+        nameButton.setEnabled(true);
+        //nameButton.addActionListener(saveName);
+        namePanel.add(nameLabel);
+        namePanel.add(txtName);
+        namePanel.add(nameButton);
+
+        gamePanel.setLayout(new GridLayout(2,2));
+
+        category1 = new JButton("Kultur");
+        //category1.addActionListener(buttonClick);
+        category1.setEnabled(false);
+        gamePanel.add(category1);
+
+        category2 = new JButton("Musik");
+        //category2.addActionListener(buttonClick);
+        category2.setEnabled(false);
+        gamePanel.add(category2);
+
+        category3 = new JButton("Sport");
+        //category3.addActionListener(buttonClick);
+        category3.setEnabled(false);
+        gamePanel.add(category3);
+
+        category4 = new JButton("Gaming");
+        //category4.addActionListener(buttonClick);
+        category4.setEnabled(false);
+        gamePanel.add(category4);
+
+        statusPanel.add(label);
+        statusPanel.add(player2);
+        statusPanel.add(winnerLabel);
+
+        frame.getContentPane().add(BorderLayout.NORTH, namePanel);
+        frame.getContentPane().add(BorderLayout.CENTER, gamePanel);
+        frame.getContentPane().add(BorderLayout.SOUTH, statusPanel);
+
+        frame.setVisible(state);
+
+    }
+
+    ActionListener saveName = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            playerName = txtName.getText();
+            txtName.setEnabled(false);
+            nameButton.setEnabled(false);
+            category1.setEnabled(true);
+            category2.setEnabled(true);
+            category3.setEnabled(true);
+            category4.setEnabled(true);
+
+        }
+    };
 
     public static void main(String[] args) {
         Client client = new Client();
