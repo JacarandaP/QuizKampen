@@ -1,9 +1,6 @@
 package Serverside;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 
 public class ClientHandler extends Thread {
@@ -16,18 +13,14 @@ public class ClientHandler extends Thread {
 
     public void run() {
         System.out.println("Client connected");
+        String input;
 
-        try (PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+        try (ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+             ObjectInputStream in = new ObjectInputStream(socket.getInputStream())) {
 
-            String input;
+                out.writeObject("Hur många bultar finns det i Ölandsbron?");
+                out.writeObject("1. 1231231");
 
-
-                out.println("Hur många bultar finns det i Ölandsbron?");
-                out.println("1. 1231231");
-                out.println("2. 2342342");
-                out.println("3. 131223");
-                out.println("4. 9824294");
 
 
             while ((input = in.readLine()) != null) {
