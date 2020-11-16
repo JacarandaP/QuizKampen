@@ -1,13 +1,13 @@
 package Serverside;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Question {
+public class Question implements Serializable {
     private Category category;
     private String questionText;
     private List<String> answers = new ArrayList<>();
-    private String answer;
     private String correctAnswer;
 
     public Question(Category category, String questionText, String answer1, String answer2, String answer3, String correctAnswer){
@@ -31,4 +31,6 @@ public class Question {
     public boolean isCorrectAnswer(String answer) {
         return answer.equals(correctAnswer);
     }
+
+
 }

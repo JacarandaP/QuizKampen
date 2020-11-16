@@ -14,12 +14,16 @@ public class Server {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             while (true) {
                 //new ClientHandler(serverSocket.accept()).start();
-                Player player = new Player(serverSocket.accept(), "Player" + (numPlayers + 1));
+                Player playerX = new Player(serverSocket.accept(), "Player" + (numPlayers + 1));
                 numPlayers++;
-                Player opponent = new Player(serverSocket.accept(), "Player" + (numPlayers + 1));
+                Player playerY = new Player(serverSocket.accept(), "Player" + (numPlayers + 1));
+                numPlayers++;
 
-                player.start();
-                opponent.start();
+                Game game = new Game(playerX, playerY);
+                playerX.setGame(game);
+                playerY.setGame(game);
+                playerX.start();
+                playerY.start();
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -28,5 +32,6 @@ public class Server {
 
     public static void main(String[] args) {
         Server server = new Server();
+
     }
 }
