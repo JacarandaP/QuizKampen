@@ -1,6 +1,7 @@
 package GUI;
 
 import Serverside.QuestionDatabase;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,7 +13,7 @@ import java.awt.event.ActionListener;
  * Copyright: MIT
  * Class: Java20B
  */
-public class Quiz extends JFrame  {
+public class Quiz extends JFrame {
     private JPanel mainPanel = new JPanel(new GridLayout(2, 0));
     private JPanel questionPanel = new JPanel(new GridBagLayout());
     private JPanel answerPanel = new JPanel(new GridLayout(2, 0));
@@ -23,7 +24,7 @@ public class Quiz extends JFrame  {
     private JButton a3 = new JButton();
     private JButton a4 = new JButton();
 
-    public Quiz(){
+    public Quiz() {
         mainPanel.setBackground(Color.blue);
         questionPanel.setBackground(Color.white);
         answerPanel.setBackground(Color.yellow);
@@ -57,9 +58,7 @@ public class Quiz extends JFrame  {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 
-
     }
-
 
 
     public void changeButtonsToDefaultColor() {
@@ -69,7 +68,6 @@ public class Quiz extends JFrame  {
         a4.setBackground(Color.pink);
 
     }
-
 
 
     public JLabel getQuestionText() {
@@ -107,23 +105,23 @@ public class Quiz extends JFrame  {
 
         public void pressButtonInteraction() {
 
-            if (a1.getText().equalsIgnoreCase(d.getAnswerBasedOnText(questionText.getText(),category))) {
+            if (a1.getText().equalsIgnoreCase(d.getAnswerBasedOnText(questionText.getText(), category))) {
                 a1.setBackground(Color.green);
                 a2.setBackground(Color.red);
                 a3.setBackground(Color.red);
                 a4.setBackground(Color.red);
-            } else if (a2.getText().equalsIgnoreCase(d.getAnswerBasedOnText(questionText.getText(),category))) {
+            } else if (a2.getText().equalsIgnoreCase(d.getAnswerBasedOnText(questionText.getText(), category))) {
                 a2.setBackground(Color.green);
                 a1.setBackground(Color.red);
                 a3.setBackground(Color.red);
                 a4.setBackground(Color.red);
 
-            } else if (a3.getText().equalsIgnoreCase(d.getAnswerBasedOnText(questionText.getText(),category))) {
+            } else if (a3.getText().equalsIgnoreCase(d.getAnswerBasedOnText(questionText.getText(), category))) {
                 a3.setBackground(Color.green);
                 a2.setBackground(Color.red);
                 a1.setBackground(Color.red);
                 a4.setBackground(Color.red);
-            } else if (a4.getText().equalsIgnoreCase(d.getAnswerBasedOnText(questionText.getText(),category))) {
+            } else if (a4.getText().equalsIgnoreCase(d.getAnswerBasedOnText(questionText.getText(), category))) {
                 a4.setBackground(Color.green);
                 a2.setBackground(Color.red);
                 a3.setBackground(Color.red);
