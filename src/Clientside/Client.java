@@ -1,13 +1,12 @@
 package Clientside;
 
+import Serverside.Question;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
 
 public class Client extends JFrame {
@@ -27,25 +26,30 @@ public class Client extends JFrame {
     private final String hostName = "127.0.0.1";
 
 
+    Socket socketToServer = new Socket(hostName, port);
+    ObjectOutputStream out = new ObjectOutputStream(socketToServer.getOutputStream());
 
-
-
-    public Client() {
+    public Client() throws IOException {
         setUpCategory(false);
         setUpQuestions(true);
 
-        try (Socket socketToServer = new Socket(hostName, port);
-             PrintWriter out = new PrintWriter(socketToServer.getOutputStream(), true);
-             BufferedReader in = new BufferedReader(new InputStreamReader(socketToServer.getInputStream()))) {
+        try (
+             PrintWriter out = new PrintWriter(socketToServer.getOutputStream(), true)) {
+            var in = new ObjectInputStream(socketToServer.getInputStream());
+            Object fromServer;
 
-            String input;
-
-            while ((input = in.readLine()) != null) {
-                System.out.println(input);
+            while ((fromServer = in.readObject()) != null) {
+                System.out.println("jag fick nagot");
+                if(fromServer instanceof String) {
+                    System.out.println("Resultat: " + fromServer);
+                }
+                if( fromServer instanceof Question) {
+                    System.out.println(((Question)fromServer).getQuestionText());
+                }
 
             }
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
@@ -144,8 +148,8 @@ public class Client extends JFrame {
         gamePanel.add(category3);
 
         category4 = new JButton("Gaming");
-        //category4.addActionListener(buttonClick);
-        category4.setEnabled(false);
+        category4.addActionListener(buttonClick);
+        category4.setEnabled(true);
         gamePanel.add(category4);
 
         statusPanel.add(label);
@@ -159,6 +163,26 @@ public class Client extends JFrame {
         frame.setVisible(state);
 
     }
+
+    ActionListener buttonClick = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(((JButton)e.getSource()).getText() == "Gaming") {
+                try {
+                    out.writeObject("GAMING");
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
+                }
+                /*
+                * 1. Skicka vald kategori till servern
+                * 2. Valj en fraga i vald kategori pa servern
+                * 3. Skicka fragan till klienten
+                * ?. Vilken av klienterna ar det som skickar?
+                * ?. Hur haller vi reda pa totala scoren?
+                * */
+            }
+        }
+    };
 
     ActionListener saveName = new ActionListener() {
         @Override
@@ -174,7 +198,7 @@ public class Client extends JFrame {
         }
     };
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Client client = new Client();
     }
 }

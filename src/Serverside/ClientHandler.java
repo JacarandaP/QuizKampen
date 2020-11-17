@@ -18,18 +18,18 @@ public class ClientHandler extends Thread {
         try (ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
              ObjectInputStream in = new ObjectInputStream(socket.getInputStream())) {
 
-                out.writeObject("Hur många bultar finns det i Ölandsbron?");
-                out.writeObject("1. 1231231");
+             out.writeObject("Hur många bultar finns det i Ölandsbron?");
+            out.writeObject("1. 1231231");
 
-
-
-            while ((input = in.readLine()) != null) {
+            Object fromClient;
+            while ((fromClient = in.readObject()) != null) {
+                System.out.println((String)fromClient);
 //                input = in.readLine();
 //                System.out.println(input);
 
             }
 
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             System.out.println(e.getMessage());
         }
     }
