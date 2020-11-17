@@ -32,5 +32,12 @@ public class Question implements Serializable {
         return answer.equals(correctAnswer);
     }
 
+    public String getQuestionText() {
+        return questionText;
+    }
 
+
+    public String toString() {
+        return this.questionText;
+    }
 }
