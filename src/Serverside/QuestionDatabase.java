@@ -4,12 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class QuestionDatabase {
-    ArrayList<Question> gameQuestionList = new ArrayList<>();
-    ArrayList<Question> sportQuestionList = new ArrayList<>();
-    ArrayList<Question> musicQuestionList = new ArrayList<>();
-    ArrayList<Question> cultQuestionList = new ArrayList<>();
-    ArrayList<ArrayList> allQuestions = new ArrayList<>();
-
     // Gaming-related questions
     public static Question q1game = new Question(Category.GAMING,
             "I vilket spel finns karaktären Ash och hans kompanion Pikachu?",
@@ -254,10 +248,13 @@ public class QuestionDatabase {
             "Vargas Llosa",
             "Orhan Pamuk",
             "Haruki Murakami");
+    ArrayList<Question> gameQuestionList = new ArrayList<>();
+    ArrayList<Question> sportQuestionList = new ArrayList<>();
+    ArrayList<Question> musicQuestionList = new ArrayList<>();
+    ArrayList<Question> cultQuestionList = new ArrayList<>();
+    ArrayList<ArrayList> allQuestions = new ArrayList<>();
 
     public QuestionDatabase() {
-
-
 
 
         sportQuestionList.add((q1sport));
@@ -282,7 +279,6 @@ public class QuestionDatabase {
         gameQuestionList.add(q8game);
         gameQuestionList.add((q9game));
         gameQuestionList.add((q10game));
-
 
 
         musicQuestionList.add((q1music));
@@ -316,7 +312,6 @@ public class QuestionDatabase {
     }
 
 
-
     public Question getRandomQuestion(int category) {
         Random rand = new Random();
         int x = rand.nextInt(allQuestions.get(category).size());
@@ -335,8 +330,6 @@ public class QuestionDatabase {
 
         return null;
     }
-
-
 
 
 }
