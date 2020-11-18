@@ -52,11 +52,14 @@ public class Player extends Thread implements Serializable {
         {
 
             out.writeObject(getUserName() + " is connected");
-
+            Object categorySelection;
             Object fromClient;
+
+            categorySelection = in.readObject();
+            game.selectCategory((String)categorySelection); // Sends String containing category to method yet to be created in class Game.
+
             while ((fromClient = in.readObject()) != null) {
                 System.out.println((String)fromClient);
-
             }
 
 
