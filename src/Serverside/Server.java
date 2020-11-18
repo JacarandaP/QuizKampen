@@ -15,11 +15,12 @@ public class Server {
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             while (true) {
 
+               // new ClientHandler(serverSocket.accept()).start();
                 Player playerX = new Player(serverSocket.accept(), "Player" + (numPlayers + 1));
                 numPlayers++;
                 Player playerY = new Player(serverSocket.accept(), "Player" + (numPlayers + 1));
                 numPlayers++;
-                //new ClientHandler(serverSocket.accept()).start();
+
 
                 Game game = new Game(playerX, playerY);
                 playerX.setGame(game);

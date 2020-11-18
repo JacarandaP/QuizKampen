@@ -48,8 +48,8 @@ public class Player extends Thread implements Serializable {
       */
 
     public void run() {
-        try(ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
-            ObjectInputStream in = new ObjectInputStream(s.getInputStream());) {
+        try (ObjectInputStream in = new ObjectInputStream(s.getInputStream());)
+        {
 
             out.writeObject(getUserName() + " is connected");
 

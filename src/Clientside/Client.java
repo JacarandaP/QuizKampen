@@ -30,8 +30,8 @@ public class Client extends JFrame {
     ObjectOutputStream out = new ObjectOutputStream(socketToServer.getOutputStream());
 
     public Client() throws IOException {
-        setUpCategory(false);
-        setUpQuestions(true);
+        setUpCategory(true);
+        setUpQuestions(false);
 
         try (
              PrintWriter out = new PrintWriter(socketToServer.getOutputStream(), true)) {
@@ -56,7 +56,7 @@ public class Client extends JFrame {
 
     }
 
-    private void setUpCategory(boolean state){
+    private void setUpQuestions(boolean state){
         JFrame frame = new JFrame("Quizkampen");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 300);
@@ -110,7 +110,7 @@ public class Client extends JFrame {
 
     }
 
-    private void setUpQuestions(boolean state){
+    private void setUpCategory (boolean state){
         JFrame frame = new JFrame("Quizkampen");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 300);
