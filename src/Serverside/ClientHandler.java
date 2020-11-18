@@ -24,6 +24,7 @@ public class ClientHandler extends Thread {
             Object fromClient;
             while ((fromClient = in.readObject()) != null) {
                 System.out.println((String)fromClient);
+
 //                input = in.readLine();
 //                System.out.println(input);
 

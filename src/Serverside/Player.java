@@ -48,9 +48,19 @@ public class Player extends Thread implements Serializable {
       */
 
     public void run() {
-        try {
+        try(ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());
+            ObjectInputStream in = new ObjectInputStream(s.getInputStream());) {
+
             out.writeObject(getUserName() + " is connected");
-        } catch (IOException e) {
+
+            Object fromClient;
+            while ((fromClient = in.readObject()) != null) {
+                System.out.println((String)fromClient);
+
+            }
+
+
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
         Question question1 = game.getNextQuestion(this);
