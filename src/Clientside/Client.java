@@ -1,5 +1,6 @@
 package Clientside;
 
+import Serverside.Category;
 import Serverside.Question;
 
 import javax.swing.*;
@@ -169,28 +170,28 @@ public class Client extends JFrame {
         public void actionPerformed(ActionEvent e) {
                 try {
                      if(((JButton)e.getSource()).getText() == "Kultur") {
-                        out.writeObject("KULTUR");
+                        out.writeObject(Category.CULTURE);
                         category1.setEnabled(true);
                         category2.setEnabled(false);
                         category3.setEnabled(false);
                         category4.setEnabled(false);
                     }
                     else if(((JButton)e.getSource()).getText() == "Musik") {
-                        out.writeObject("MUSIK");
+                        out.writeObject(Category.MUSIC);
                         category1.setEnabled(false);
                         category2.setEnabled(true);
                         category3.setEnabled(false);
                         category4.setEnabled(false);
                     }
                     else if(((JButton)e.getSource()).getText() == "Sport") {
-                        out.writeObject("SPORT");
+                        out.writeObject(Category.SPORTS);
                         category1.setEnabled(false);
                         category2.setEnabled(false);
                         category3.setEnabled(true);
                         category4.setEnabled(false);
                     }
                      else if(((JButton)e.getSource()).getText() == "Gaming") {
-                         out.writeObject("GAMING");
+                         out.writeObject(Category.GAMING);
                          category1.setEnabled(false);
                          category2.setEnabled(false);
                          category3.setEnabled(false);
