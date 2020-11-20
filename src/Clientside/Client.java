@@ -11,8 +11,8 @@ import java.net.Socket;
 
 public class Client extends JFrame {
 
-    JLabel label = new JLabel("Ange ditt namn");
-    JLabel player2 = new JLabel("Väntar på andra spelare");
+    JLabel label = new JLabel("");
+    JLabel player2 = new JLabel("");
     JLabel winnerLabel = new JLabel("Vinnare:");
     String playerName;
     JTextField txtName;
