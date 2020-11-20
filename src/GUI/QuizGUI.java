@@ -32,10 +32,10 @@ public class QuizGUI extends JPanel {
         questionPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         quizPanel.add(answerPanel);
         Listener l = new Listener();
-        a1.addActionListener(l);
-        a2.addActionListener(l);
-        a3.addActionListener(l);
-        a4.addActionListener(l);
+        //a1.addActionListener(l);
+        //a2.addActionListener(l);
+        //a3.addActionListener(l);
+        //a4.addActionListener(l);
         answerPanel.add(a1);
         answerPanel.add(a2);
         answerPanel.add(a3);

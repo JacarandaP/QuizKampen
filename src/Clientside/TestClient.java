@@ -2,6 +2,7 @@ package Clientside;
 
 import GUI.CategoryGUI;
 import GUI.QuizGUI;
+import GUI.WaitingGUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +18,7 @@ import java.awt.event.ActionListener;
 public class TestClient extends JFrame {
     QuizGUI quizGUI = new QuizGUI();
     CategoryGUI catGUI = new CategoryGUI();
+    WaitingGUI waitGUI = new WaitingGUI();
     JPanel mainPanel = new JPanel();
     CardLayout c1 = new CardLayout();
 
@@ -25,10 +27,12 @@ public class TestClient extends JFrame {
        mainPanel.setLayout(c1);
        mainPanel.add(catGUI,"0");
        mainPanel.add(quizGUI,"1");
+       mainPanel.add(waitGUI, "2");
        c1.show(mainPanel, "0");
        add(mainPanel);
        ButtonListener buttonClick = new ButtonListener();
        catGUI.getCategory1().addActionListener(buttonClick);
+       quizGUI.getA4().addActionListener(buttonClick);
 
 
 
@@ -51,6 +55,10 @@ public class TestClient extends JFrame {
             if (e.getSource() == catGUI.getCategory1()) {
                 c1.show(mainPanel,"1");
 
+            }
+
+            if (e.getSource() == quizGUI.getA4()) {
+                c1.show(mainPanel,"0");
             }
         }
     }

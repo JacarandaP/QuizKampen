@@ -35,11 +35,12 @@ public class Client extends JFrame {
         mainPanel.setLayout(c1);
         mainPanel.add(catGUI,"0");
         mainPanel.add(quizGUI,"1");
-        mainPanel.add(waitGUI, "3");
+        mainPanel.add(waitGUI, "2");
         c1.show(mainPanel, "0");
         add(mainPanel);
         ButtonListener buttonClick = new ButtonListener();
         catGUI.getCategory1().addActionListener(buttonClick);
+        quizGUI.getA4().addActionListener(buttonClick);
 
         pack();
         setVisible(true);
@@ -72,6 +73,10 @@ public class Client extends JFrame {
             if (e.getSource() == catGUI.getCategory1()) {
                 c1.show(mainPanel,"1");
 
+            }
+
+            if (e.getSource() == quizGUI.getA4()) {
+                c1.show(mainPanel,"2");
             }
         }
     }
