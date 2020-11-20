@@ -1,6 +1,7 @@
 package Serverside;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 
 public class Server {
@@ -13,11 +14,13 @@ public class Server {
 
         try (ServerSocket serverSocket = new ServerSocket(port)) {
             while (true) {
-                //new ClientHandler(serverSocket.accept()).start();
+
+               // new ClientHandler(serverSocket.accept()).start();
                 Player playerX = new Player(serverSocket.accept(), "Player" + (numPlayers + 1));
                 numPlayers++;
                 Player playerY = new Player(serverSocket.accept(), "Player" + (numPlayers + 1));
                 numPlayers++;
+
 
                 Game game = new Game(playerX, playerY);
                 playerX.setGame(game);

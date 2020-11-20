@@ -16,7 +16,7 @@ public class Main {
 
         while (true) {
 
-            Question questionDatabase = qd.getRandomQuestion(0); //category
+            Question questionDatabase = qd.getRandomQuestion(0); //category //TODO varför skapas det en fråga i klienten? hur säkerställer man att motspelaren får samma fråga
             Collections.shuffle(questionDatabase.getAnswers());
             quiz.getQuestionText().setText(questionDatabase.getQuestionText());
             quiz.getA1().setText(questionDatabase.getAnswers().get(0));
