@@ -11,8 +11,8 @@ import java.net.Socket;
 
 public class Client extends JFrame {
 
-    JLabel label = new JLabel("Ange ditt namn");
-    JLabel player2 = new JLabel("Väntar på andra spelare");
+    JLabel label = new JLabel("");
+    JLabel player2 = new JLabel("");
     JLabel winnerLabel = new JLabel("Vinnare:");
     String playerName;
     JTextField txtName;
@@ -30,8 +30,8 @@ public class Client extends JFrame {
     ObjectOutputStream out = new ObjectOutputStream(socketToServer.getOutputStream());
 
     public Client() throws IOException {
-        setUpCategory(false);
-        setUpQuestions(true);
+        setUpCategory(true);
+        setUpQuestions(false);
 
         try (
              PrintWriter out = new PrintWriter(socketToServer.getOutputStream(), true)) {
@@ -56,7 +56,7 @@ public class Client extends JFrame {
 
     }
 
-    private void setUpCategory(boolean state){
+    private void setUpQuestions(boolean state){
         JFrame frame = new JFrame("Quizkampen");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 300);
@@ -110,7 +110,7 @@ public class Client extends JFrame {
 
     }
 
-    private void setUpQuestions(boolean state){
+    private void setUpCategory (boolean state){
         JFrame frame = new JFrame("Quizkampen");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 300);
@@ -121,30 +121,30 @@ public class Client extends JFrame {
         JPanel statusPanel = new JPanel();
         JPanel winnersPanel = new JPanel();
 
-        JLabel nameLabel = new JLabel("Name:");
-        txtName = new JTextField(15);
-        nameButton = new JButton("Save");
-        nameButton.setEnabled(true);
-        //nameButton.addActionListener(saveName);
+        JLabel nameLabel = new JLabel("Fråga:");
+        //txtName = new JTextField(15);
+        //nameButton = new JButton("Save");
+       // nameButton.setEnabled(true);
+       // nameButton.addActionListener(saveName);
         namePanel.add(nameLabel);
-        namePanel.add(txtName);
-        namePanel.add(nameButton);
+       // namePanel.add(txtName);
+        //namePanel.add(nameButton);
 
         gamePanel.setLayout(new GridLayout(2,2));
 
         category1 = new JButton("Kultur");
-        //category1.addActionListener(buttonClick);
-        category1.setEnabled(false);
+        category1.addActionListener(buttonClick);
+        category1.setEnabled(true);
         gamePanel.add(category1);
 
         category2 = new JButton("Musik");
-        //category2.addActionListener(buttonClick);
-        category2.setEnabled(false);
+        category2.addActionListener(buttonClick);
+        category2.setEnabled(true);
         gamePanel.add(category2);
 
         category3 = new JButton("Sport");
-        //category3.addActionListener(buttonClick);
-        category3.setEnabled(false);
+        category3.addActionListener(buttonClick);
+        category3.setEnabled(true);
         gamePanel.add(category3);
 
         category4 = new JButton("Gaming");
@@ -167,9 +167,36 @@ public class Client extends JFrame {
     ActionListener buttonClick = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(((JButton)e.getSource()).getText() == "Gaming") {
                 try {
-                    out.writeObject("GAMING");
+                     if(((JButton)e.getSource()).getText() == "Kultur") {
+                        out.writeObject("KULTUR");
+                        category1.setEnabled(true);
+                        category2.setEnabled(false);
+                        category3.setEnabled(false);
+                        category4.setEnabled(false);
+                    }
+                    else if(((JButton)e.getSource()).getText() == "Musik") {
+                        out.writeObject("MUSIK");
+                        category1.setEnabled(false);
+                        category2.setEnabled(true);
+                        category3.setEnabled(false);
+                        category4.setEnabled(false);
+                    }
+                    else if(((JButton)e.getSource()).getText() == "Sport") {
+                        out.writeObject("SPORT");
+                        category1.setEnabled(false);
+                        category2.setEnabled(false);
+                        category3.setEnabled(true);
+                        category4.setEnabled(false);
+                    }
+                     else if(((JButton)e.getSource()).getText() == "Gaming") {
+                         out.writeObject("GAMING");
+                         category1.setEnabled(false);
+                         category2.setEnabled(false);
+                         category3.setEnabled(false);
+                         category4.setEnabled(true);
+                     }
+
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }
@@ -180,23 +207,10 @@ public class Client extends JFrame {
                 * ?. Vilken av klienterna ar det som skickar?
                 * ?. Hur haller vi reda pa totala scoren?
                 * */
-            }
-        }
-    };
-
-    ActionListener saveName = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            playerName = txtName.getText();
-            txtName.setEnabled(false);
-            nameButton.setEnabled(false);
-            category1.setEnabled(true);
-            category2.setEnabled(true);
-            category3.setEnabled(true);
-            category4.setEnabled(true);
 
         }
-    };
+        };
+
 
     public static void main(String[] args) throws IOException {
         Client client = new Client();
