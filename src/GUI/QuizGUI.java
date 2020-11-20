@@ -25,18 +25,7 @@ public class QuizGUI extends JPanel {
     private JButton a4 = new JButton();
 
     public QuizGUI() {
-        quizPanel.setBackground(Color.blue);
-        questionPanel.setBackground(Color.white);
-        answerPanel.setBackground(Color.yellow);
-        a1.setBackground(Color.pink);
-        a1.setForeground(Color.darkGray);
-        a2.setBackground(Color.pink);
-        a2.setForeground(Color.darkGray);
-        a3.setBackground(Color.pink);
-        a3.setForeground(Color.darkGray);
-        a4.setBackground(Color.pink);
-        a4.setForeground(Color.darkGray);
-
+        setupColorsForQuiz();
 
         quizPanel.add(questionPanel);
         questionPanel.add(questionText);
@@ -66,6 +55,20 @@ public class QuizGUI extends JPanel {
         a3.setBackground(Color.pink);
         a4.setBackground(Color.pink);
 
+    }
+
+    public void setupColorsForQuiz() {
+        quizPanel.setBackground(Color.blue);
+        questionPanel.setBackground(Color.white);
+        answerPanel.setBackground(Color.yellow);
+        a1.setBackground(Color.pink);
+        a1.setForeground(Color.darkGray);
+        a2.setBackground(Color.pink);
+        a2.setForeground(Color.darkGray);
+        a3.setBackground(Color.pink);
+        a3.setForeground(Color.darkGray);
+        a4.setBackground(Color.pink);
+        a4.setForeground(Color.darkGray);
     }
 
 

@@ -1,5 +1,9 @@
 package Clientside;
 
+import GUI.CategoryGUI;
+import GUI.QuizGUI;
+import GUI.WaitingGUI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,17 +15,11 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class Client extends JFrame {
-
-    JLabel label = new JLabel("Ange ditt namn");
-    JLabel player2 = new JLabel("Väntar på andra spelare");
-    JLabel winnerLabel = new JLabel("Vinnare:");
-    String playerName;
-    JTextField txtName;
-    JButton nameButton;
-    JButton category1;
-    JButton category2;
-    JButton category3;
-    JButton category4;
+    QuizGUI quizGUI = new QuizGUI();
+    CategoryGUI catGUI = new CategoryGUI();
+    WaitingGUI waitGUI = new WaitingGUI();
+    JPanel mainPanel = new JPanel();
+    CardLayout c1 = new CardLayout();
 
     private final int port = 54321;
     private final String hostName = "127.0.0.1";
@@ -31,8 +29,23 @@ public class Client extends JFrame {
 
 
     public Client() {
-        setUpCategory(false);
-        setUpQuestions(true);
+        //setUpCategory(false);
+        //setUpQuestions(true);
+
+        mainPanel.setLayout(c1);
+        mainPanel.add(catGUI,"0");
+        mainPanel.add(quizGUI,"1");
+        mainPanel.add(waitGUI, "3");
+        c1.show(mainPanel, "0");
+        add(mainPanel);
+        ButtonListener buttonClick = new ButtonListener();
+        catGUI.getCategory1().addActionListener(buttonClick);
+
+        pack();
+        setVisible(true);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+
 
         try (Socket socketToServer = new Socket(hostName, port);
              PrintWriter out = new PrintWriter(socketToServer.getOutputStream(), true);
@@ -52,7 +65,18 @@ public class Client extends JFrame {
 
     }
 
-    private void setUpCategory(boolean state){
+    private class ButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == catGUI.getCategory1()) {
+                c1.show(mainPanel,"1");
+
+            }
+        }
+    }
+
+    /*private void setUpCategory(boolean state){
         JFrame frame = new JFrame("Quizkampen");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 300);
@@ -172,7 +196,7 @@ public class Client extends JFrame {
             category4.setEnabled(true);
 
         }
-    };
+    };*/
 
     public static void main(String[] args) {
         Client client = new Client();
