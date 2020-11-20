@@ -17,8 +17,8 @@ public class PropertyReader {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        numberOfRounds = Integer.parseInt(p.getProperty("roundsInput"));
-        numberOfQuestions = Integer.parseInt(p.getProperty("questionsInput"));
+        numberOfRounds = Integer.parseInt(p.getProperty("roundsInput", "4"));
+        numberOfQuestions = Integer.parseInt(p.getProperty("questionsInput", "3"));
     }
 
     public int getNumberOfRounds() {
@@ -39,6 +39,11 @@ public class PropertyReader {
             numberOfQuestions = 3; // default
             return -1;
         }
+    }
+
+    public static void main(String[] args) {
+        PropertyReader p  = new PropertyReader();
+        System.out.println(p.getNumberOfQuestions());
     }
 }
 
