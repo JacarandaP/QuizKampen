@@ -1,5 +1,4 @@
-import Clientside.Client;
-import GUI.Quiz;
+import GUI.QuizGUI;
 import Serverside.Question;
 import Serverside.QuestionDatabase;
 
@@ -9,7 +8,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Quiz quiz = new Quiz();
+        QuizGUI quiz = new QuizGUI();
         QuestionDatabase qd = new QuestionDatabase();
 
         Scanner sc = new Scanner(System.in);

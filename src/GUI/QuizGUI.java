@@ -13,19 +13,19 @@ import java.awt.event.ActionListener;
  * Copyright: MIT
  * Class: Java20B
  */
-public class Quiz extends JFrame {
-    private JPanel mainPanel = new JPanel(new GridLayout(2, 0));
+public class QuizGUI extends JPanel {
+    private JPanel quizPanel = new JPanel(new GridLayout(2, 0));
     private JPanel questionPanel = new JPanel(new GridBagLayout());
     private JPanel answerPanel = new JPanel(new GridLayout(2, 0));
-    private JLabel questionText = new JLabel("d");
+    private JLabel questionText = new JLabel("");
     private int category = 0;
     private JButton a1 = new JButton();
     private JButton a2 = new JButton();
     private JButton a3 = new JButton();
     private JButton a4 = new JButton();
 
-    public Quiz() {
-        mainPanel.setBackground(Color.blue);
+    public QuizGUI() {
+        quizPanel.setBackground(Color.blue);
         questionPanel.setBackground(Color.white);
         answerPanel.setBackground(Color.yellow);
         a1.setBackground(Color.pink);
@@ -37,11 +37,11 @@ public class Quiz extends JFrame {
         a4.setBackground(Color.pink);
         a4.setForeground(Color.darkGray);
 
-        add(mainPanel);
-        mainPanel.add(questionPanel);
+
+        quizPanel.add(questionPanel);
         questionPanel.add(questionText);
         questionPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        mainPanel.add(answerPanel);
+        quizPanel.add(answerPanel);
         Listener l = new Listener();
         a1.addActionListener(l);
         a2.addActionListener(l);
@@ -52,10 +52,9 @@ public class Quiz extends JFrame {
         answerPanel.add(a3);
         answerPanel.add(a4);
 
+        quizPanel.setPreferredSize(new Dimension(500,500));
 
-        setSize(700, 500);
-        setVisible(true);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        add(quizPanel);
 
 
     }
