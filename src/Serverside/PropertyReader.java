@@ -40,5 +40,10 @@ public class PropertyReader {
             return -1;
         }
     }
+
+    public static void main(String[] args) {
+        PropertyReader p  = new PropertyReader();
+        System.out.println(p.getNumberOfQuestions());
+    }
 }
 
