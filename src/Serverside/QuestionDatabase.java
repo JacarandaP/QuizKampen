@@ -1,7 +1,6 @@
 package Serverside;
 
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
 
 public class QuestionDatabase {
     // Gaming-related questions
@@ -252,7 +251,7 @@ public class QuestionDatabase {
     ArrayList<Question> sportQuestionList = new ArrayList<>();
     ArrayList<Question> musicQuestionList = new ArrayList<>();
     ArrayList<Question> cultQuestionList = new ArrayList<>();
-    ArrayList<ArrayList> allQuestions = new ArrayList<>();
+    Map<Category, List<Question>> allQuestions = new HashMap<>();
 
     public QuestionDatabase() {
 
@@ -303,23 +302,20 @@ public class QuestionDatabase {
         cultQuestionList.add((q9cult));
         cultQuestionList.add((q10cult));
 
-        allQuestions.add(sportQuestionList);
-        allQuestions.add(gameQuestionList);
-        allQuestions.add(musicQuestionList);
-        allQuestions.add(cultQuestionList);
-
-
-    }
-
-
-    public Question getRandomQuestion(int category) {
-        Random rand = new Random();
-        int x = rand.nextInt(allQuestions.get(category).size());
-        return (Question) allQuestions.get(category).get(x);
+        allQuestions.put(Category.SPORTS, sportQuestionList);
+        allQuestions.put(Category.GAMING, gameQuestionList);
+        allQuestions.put(Category.MUSIC,musicQuestionList);
+        allQuestions.put(Category.CULTURE, cultQuestionList);
 
     }
 
 
+    public List<Question> getQuestionsByCategory(Category category) {
+    return allQuestions.get(category);
+
+    }
+
+/*
     public String getAnswerBasedOnText(String questionText, int category) {
         ArrayList<Question> questionList = allQuestions.get(category);
         for (Question q : questionList) {
@@ -328,10 +324,10 @@ public class QuestionDatabase {
             }
         }
 
-        return null;
+        return null;*/
     }
 
 
-}
+
 
 

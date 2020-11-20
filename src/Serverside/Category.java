@@ -1,18 +1,18 @@
 package Serverside;
 
 public enum Category {
-    SPORTS("Sport"),
+    CULTURE("Kultur"),
     GAMING("Gaming"),
     MUSIC("Musik"),
-    CULTURE("Kultur");
+    SPORTS("Sport");
 
     String name;
 
-    Category(String name){
+    Category(String name) {
         this.name = name;
     }
 
-    public String getCategoryName(){
+    public String getCategoryName() {
         return name;
     }
 }
