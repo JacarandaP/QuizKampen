@@ -13,19 +13,16 @@ import java.awt.event.ActionListener;
  */
 public class CategoryGUI extends JPanel {
 
-    private JLabel waitingForPlayers = new JLabel("Väntar på andra spelare");
-    private JLabel winnerLabel = new JLabel("Vinnare:");
-    private String playerName;
-    private JTextField txtName;
-    private JButton nameButton;
-    private JButton category1 = new JButton("Kultur");
-    private JButton category2 = new JButton("Musik");
-    private JButton category3 = new JButton("Sport");
-    private JButton category4 = new JButton("Gaming");
+    JLabel winnerLabel = new JLabel("Vinnare:");
+    JButton category1 = new JButton("Kultur");
+    JButton category2 = new JButton("Musik");
+    JButton category3 = new JButton("Sport");
+    JButton category4 = new JButton("Gaming");
     private JPanel gamePanel = new JPanel();
     private JPanel statusPanel = new JPanel();
-    private JPanel winnersPanel = new JPanel();
     private JPanel categoryPanel = new JPanel(new BorderLayout());
+    JPanel namePanel = new JPanel();
+    JLabel nameLabel = new JLabel("Fråga:");
 
 
 
@@ -51,15 +48,19 @@ public class CategoryGUI extends JPanel {
         gamePanel.add(category4);
 
 
-        statusPanel.add(waitingForPlayers);
         statusPanel.add(winnerLabel);
 
+        namePanel.setBackground(Color.RED);
+        namePanel.add(nameLabel);
 
+        categoryPanel.add(namePanel,BorderLayout.NORTH);
         categoryPanel.add(gamePanel, BorderLayout.CENTER);
         categoryPanel.add(statusPanel, BorderLayout.SOUTH);
         categoryPanel.setPreferredSize(new Dimension(500,500));
         add(categoryPanel);
     }
+
+
 
 
 
