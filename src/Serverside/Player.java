@@ -47,7 +47,6 @@ public class Player extends Thread implements Serializable {
             out.writeObject(getUserName() + " is connected");
 
             Object fromClient;
-            fromClient = in.readObject();
 
             while ((fromClient = in.readObject()) != null) {
                //System.out.println((String)fromClient);
