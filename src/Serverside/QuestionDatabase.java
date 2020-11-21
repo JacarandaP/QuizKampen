@@ -315,16 +315,11 @@ public class QuestionDatabase {
 
     }
 
-/*
-    public String getAnswerBasedOnText(String questionText, int category) {
-        ArrayList<Question> questionList = allQuestions.get(category);
-        for (Question q : questionList) {
-            if (q.getQuestionText().equalsIgnoreCase(questionText)) {
-                return q.getCorrectAnswer();
-            }
-        }
+    public List<Category> getCategoryList(){
+        List <Category> categoryList = List.of(Category.SPORTS, Category.CULTURE, Category.GAMING, Category.MUSIC);
+        return categoryList;
+    }
 
-        return null;*/
     }
 
 

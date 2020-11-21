@@ -45,14 +45,15 @@ public class NewClient extends JFrame {
             Object fromServer;
 
             while ((fromServer = in.readObject()) != null) {
-                System.out.println("jag fick nagot");
+                System.out.println(fromServer);
+  /*              System.out.println("jag fick nagot");
                 if (fromServer instanceof String) {
                     System.out.println("Resultat: " + fromServer);
                 }
                 if (fromServer instanceof Question) {
                     System.out.println(((Question) fromServer).getQuestionText());
                 }
-
+*/
             }
 
         } catch (Exception e) {
