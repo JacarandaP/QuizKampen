@@ -40,7 +40,13 @@ public class Question implements Serializable {
     {return this.category;}
 
 
+    @Override
     public String toString() {
-        return this.questionText;
+        return "Question{" +
+                "category=" + category +
+                ", questionText='" + questionText + '\'' +
+                ", answers=" + answers +
+                ", correctAnswer='" + correctAnswer + '\'' +
+                '}';
     }
 }

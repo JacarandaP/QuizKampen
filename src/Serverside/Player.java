@@ -3,6 +3,7 @@ package Serverside;
 import java.io.*;
 import java.net.Socket;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Max Erling
@@ -14,13 +15,18 @@ public class Player extends Thread implements Serializable {
     private String name;
     private Socket s;
     private Game game;
-    ObjectOutputStream out;
+    private ObjectOutputStream out;
+    private PlayerStatus playerStatus;
 
-    public Player(Socket socket, String name) {
+
+
+    public Player(Socket socket, String name, Game game) {
         this.name = name;
         this.s = socket;
+        this.game = game;
         String welcomeMessage = "Waiting for both players to connect";
-
+        playerStatus = new PlayerStatus();
+        playerStatus.setWaiting(true);
 
         try  {
             out = new ObjectOutputStream(s.getOutputStream());
@@ -28,44 +34,56 @@ public class Player extends Thread implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
-
-
     public String getUserName(){
     return name;
     }
 
-    public void setGame(Game game) {
-        this.game = game;
+
+    public PlayerStatus getPlayerStatus(){
+        return playerStatus;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return name.equals(player.name);
+    }
 
+    public void sendCurrentStatus() {
+        try {
+            out.reset();
+            out.writeObject(playerStatus);
+            System.out.println("sending this " + playerStatus + "to " + name);
+        } catch (IOException ie) { ie.printStackTrace(); }
+    }
     public void run() {
         try (ObjectInputStream in = new ObjectInputStream(s.getInputStream());)
         {
+            game.playerIsConnected(this);
             out.writeObject(getUserName() + " is connected");
 
             Object fromClient;
-            fromClient = in.readObject();
 
             while ((fromClient = in.readObject()) != null) {
-               //System.out.println((String)fromClient);
-                    if(fromClient instanceof Category) {
+                //System.out.println((String)fromClient);
+                if (playerStatus.isSelectingCategory()) {
+                    if (fromClient instanceof Category) {
+                        System.out.println("category has been selected");
+                        game.categorySelected((Category) fromClient);
 
-                        List<Question> listToBeSent = game.getQuestions((Category) fromClient);
 
-                        listToBeSent.forEach((temp) -> {
-                            System.out.println(temp);
-
-                        });
                     } else {
-                        System.out.println(fromClient);
+                        System.err.println("Expected category but received " + fromClient);
                     }
 
+                    sendCurrentStatus();
+
+                }
+
             }
-
-
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
