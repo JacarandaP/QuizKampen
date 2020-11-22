@@ -7,7 +7,6 @@ import java.net.ServerSocket;
 public class Server {
 
     private int port = 54321;
-    private int numPlayers = 0;
 
     public Server() {
         System.out.println("Server started");
