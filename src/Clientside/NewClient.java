@@ -56,11 +56,14 @@ public class NewClient extends JFrame {
                         playerStatusClient = (PlayerStatus) fromServer;
                         if (playerStatusClient.isSelectingCategory() == true) {
                             System.out.println(playerStatusClient.getCategoriesToSelectBetween());
+                            c1.show(mainPanel, "0");
                         } else if (((PlayerStatus) fromServer).isWaiting() == true){
                             System.out.println(playerStatusClient.getReasonForWaiting());
+                            c1.show(mainPanel,"2");
                         }
                         if(playerStatusClient.isSelectingAnswer() == true){
                             System.out.println(playerStatusClient.getQuestionToAnswer());
+                            c1.show(mainPanel,"1");
                                 if(s.hasNext() == true){ String answer = s.next();
                                 out.writeObject(answer); }
                         }
@@ -94,7 +97,6 @@ public class NewClient extends JFrame {
         mainPanel.add(catGUI, "0");
         mainPanel.add(quizGUI, "1");
         mainPanel.add(waitGUI, "2");
-        c1.show(mainPanel, "0");
         add(mainPanel);
     }
 

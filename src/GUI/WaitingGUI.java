@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class WaitingGUI extends JPanel {
-    private JLabel txt = new JLabel("Waiting for both players to be done");
+    private JLabel txt = new JLabel("Waiting...");
     private JPanel waitingPanel = new JPanel(new GridBagLayout());
 
 

@@ -32,6 +32,9 @@ public class CategoryGUI extends JPanel {
         //category1.addActionListener(buttonClick); //***
         category1.setEnabled(true);
         category1.setBackground(Color.lightGray);
+        category2.setBackground(Color.lightGray);
+        category3.setBackground(Color.lightGray);
+        category4.setBackground(Color.lightGray);
         gamePanel.add(category1);
 
 
