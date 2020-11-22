@@ -147,10 +147,6 @@ public class NewClient extends JFrame {
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
-
-            if (e.getSource() == quizGUI.getA4()) {
-                c1.show(mainPanel, "2");
-            }
         }
     }
 
