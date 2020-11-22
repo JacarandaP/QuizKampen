@@ -36,15 +36,15 @@ public class CategoryGUI extends JPanel {
 
 
         //category2.addActionListener(buttonClick);
-        category2.setEnabled(false);
+        category2.setEnabled(true);
         gamePanel.add(category2);
 
         //category3.addActionListener(buttonClick);
-        category3.setEnabled(false);
+        category3.setEnabled(true);
         gamePanel.add(category3);
 
         //category4.addActionListener(buttonClick);
-        category4.setEnabled(false);
+        category4.setEnabled(true);
         gamePanel.add(category4);
 
 

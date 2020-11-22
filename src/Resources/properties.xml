@@ -3,6 +3,6 @@
 
 <properties>
 <comment>Sets number of Rounds and number of Questions</comment>
-<entry key="roundsInput">4</entry>
-<entry key="questionsInput">3</entry>
+<entry key="roundsInput">2</entry>
+<entry key="questionsInput">2</entry>
 </properties>

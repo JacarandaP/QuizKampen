@@ -16,6 +16,8 @@ public class Game {
     private final QuestionDatabase questionDatabase;
     private final int numberOfQuestions;
     private  List<Question> questionsInRound;
+    private int currentRound = 1;
+    private final int numberOfRounds;
 
 
     public Game() {
@@ -23,6 +25,7 @@ public class Game {
         questionDatabase = new QuestionDatabase();
         PropertyReader properties = new PropertyReader();
         numberOfQuestions = properties.getNumberOfQuestions();
+        numberOfRounds = properties.getNumberOfRounds();
     }
 
     public List<Question> getQuestions(Category category){
@@ -60,16 +63,62 @@ public class Game {
         playerY.sendCurrentStatus();
     }
 
+    //Ska kanske även implementera den framtida metoden isRightAnswer
+
     public void answerSelected(Player player, String answer){
         int index = player.getPlayerStatus().getCurrentQuestionIndex();
-        if (index == questionsInRound.size()-1 ){
-           Player otherPlayer = getOtherPlayer(player);
-                // check if it is waiting: int indexForOtherPlayer = otherPlayer.getPlayerStatus().getCurrentQuestionIndex();
+        if (index == questionsInRound.size()-1 ) {
+            Player otherPlayer = getOtherPlayer(player);
+            if (otherPlayer.getPlayerStatus().isSelectingAnswer()) {
+                player.getPlayerStatus().setWaiting(true);
+                player.getPlayerStatus().setReasonForWaiting("Waiting for the other player to answer");
+                player.getPlayerStatus().setSelectingAnswer(false);
+                player.sendCurrentStatus();
 
+            } else {
+                player.getPlayerStatus().setSelectingAnswer(false);
+                player.getPlayerStatus().setRoundFinished(true);
+                otherPlayer.getPlayerStatus().setSelectingAnswer(false);
+                otherPlayer.getPlayerStatus().setRoundFinished(true);
+                otherPlayer.getPlayerStatus().setWaiting(false);
 
+                if(currentRound == numberOfRounds) {
 
+                    player.getPlayerStatus().setGameFinished(true);
+                    otherPlayer.getPlayerStatus().setGameFinished(true);
 
+                }
+
+                player.sendCurrentStatus();
+                otherPlayer.sendCurrentStatus();
+            }
         }
+        else {
+
+            index ++;
+            player.getPlayerStatus().setQuestionToAnswer(questionsInRound.get(index));
+            player.getPlayerStatus().setCurrentQuestionIndex(index);
+            player.sendCurrentStatus();
+        }
+
+    }
+
+    public void playNexRound(){
+        currentRound ++;
+        playerX.getPlayerStatus().setSelectingAnswer(false);
+        playerY.getPlayerStatus().setSelectingAnswer(false);
+        playerX.getPlayerStatus().setWaiting(true);
+        playerX.getPlayerStatus().setReasonForWaiting("Waiting for other player to select a category");
+        playerX.getPlayerStatus().setRoundFinished(false);
+        playerX.sendCurrentStatus();
+        playerY.getPlayerStatus().setWaiting(false);
+        playerY.getPlayerStatus().setCategoriesToSelectBetween(questionDatabase.getCategoryList());
+        playerY.getPlayerStatus().setSelectingCategory(true);
+        playerY.getPlayerStatus().setRoundFinished(false);
+        playerY.sendCurrentStatus();
+
+
+
 
     }
 
