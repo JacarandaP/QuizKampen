@@ -76,6 +76,7 @@ public class NewClient extends JFrame {
                             String answer = s.next();
                             out.writeObject(answer);
                         }
+                        changeAnswersToDefaultColor();
                     }
 
                     if (playerStatusClient.isRoundFinished()) {
@@ -160,6 +161,14 @@ public class NewClient extends JFrame {
 
     }
 
+    public void changeAnswersToDefaultColor() {
+        quizGUI.getA1().setBackground(Color.pink);
+        quizGUI.getA2().setBackground(Color.pink);
+        quizGUI.getA3().setBackground(Color.pink);
+        quizGUI.getA4().setBackground(Color.pink);
+
+    }
+
     private class ButtonListener implements ActionListener {
 
         @Override
@@ -180,19 +189,23 @@ public class NewClient extends JFrame {
                 }
 
                 if (e.getSource() == quizGUI.getA1()) {
+                    pressAnswersColorInteraction();
                     answer = quizGUI.getA1().getText();
                     out.writeObject(answer);
 
                 } else if (e.getSource() == quizGUI.getA2()) {
+                    pressAnswersColorInteraction();
                     answer = quizGUI.getA2().getText();
                     out.writeObject(answer);
 
                 } else if (e.getSource() == quizGUI.getA3()) {
+                    pressAnswersColorInteraction();
                     answer = quizGUI.getA3().getText();
                     out.writeObject(answer);
 
-                } else if (e.getSource() == quizGUI.getA1()) {
-                    answer = quizGUI.getA3().getText();
+                } else if (e.getSource() == quizGUI.getA4()) {
+                    pressAnswersColorInteraction();
+                    answer = quizGUI.getA4().getText();
                     out.writeObject(answer);
 
                 }
