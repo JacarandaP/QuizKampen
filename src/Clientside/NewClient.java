@@ -64,6 +64,13 @@ public class NewClient extends JFrame {
                         if(playerStatusClient.isSelectingAnswer() == true){
                             System.out.println(playerStatusClient.getQuestionToAnswer());
                             c1.show(mainPanel,"1");
+
+                            quizGUI.getQuestionText().setText(playerStatusClient.getQuestionToAnswer().getQuestionText());
+                            quizGUI.getA1().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(0));
+                            quizGUI.getA2().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(1));
+                            quizGUI.getA3().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(2));
+                            quizGUI.getA4().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(3));
+
                                 if(s.hasNext() == true){ String answer = s.next();
                                 out.writeObject(answer); }
                         }
