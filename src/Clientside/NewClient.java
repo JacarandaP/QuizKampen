@@ -101,6 +101,9 @@ public class NewClient extends JFrame {
     public void setupButtonInteraction() {
         ButtonListener buttonClick = new ButtonListener();
         catGUI.getCategory1().addActionListener(buttonClick);
+        catGUI.getCategory2().addActionListener(buttonClick);
+        catGUI.getCategory3().addActionListener(buttonClick);
+        catGUI.getCategory4().addActionListener(buttonClick);
         quizGUI.getA4().addActionListener(buttonClick);
     }
 
