@@ -35,6 +35,7 @@ public class NewClient extends JFrame {
     private JPanel mainPanel = new JPanel();
     private CardLayout c1 = new CardLayout();
     private String answer;
+    private PlayerStatus playerStatusClient;
 
 
     public NewClient() throws IOException {
@@ -48,44 +49,48 @@ public class NewClient extends JFrame {
                 PrintWriter outP = new PrintWriter(socketToServer.getOutputStream(), true)) {
             var in = new ObjectInputStream(socketToServer.getInputStream());
             Object fromServer;
-            PlayerStatus playerStatusClient = new PlayerStatus();
 
 
             //Scanner och sout ska ersättas med gui
             while ((fromServer = in.readObject()) != null) {
-                    if(fromServer instanceof PlayerStatus) {
-                        playerStatusClient = (PlayerStatus) fromServer;
-                        if (playerStatusClient.isSelectingCategory() == true) {
-                            System.out.println(playerStatusClient.getCategoriesToSelectBetween());
-                            c1.show(mainPanel, "0");
-                        } else if (((PlayerStatus) fromServer).isWaiting() == true){
-                            System.out.println(playerStatusClient.getReasonForWaiting());
-                            c1.show(mainPanel,"2");
-                        }
-                        if(playerStatusClient.isSelectingAnswer() == true){
-                            System.out.println(playerStatusClient.getQuestionToAnswer());
-                            c1.show(mainPanel,"1");
+                if (fromServer instanceof PlayerStatus) {
+                    playerStatusClient = (PlayerStatus) fromServer;
+                    if (playerStatusClient.isSelectingCategory() == true) {
+                        System.out.println(playerStatusClient.getCategoriesToSelectBetween());
+                        c1.show(mainPanel, "0");
+                    } else if (((PlayerStatus) fromServer).isWaiting() == true) {
+                        System.out.println(playerStatusClient.getReasonForWaiting());
+                        c1.show(mainPanel, "2");
+                    }
+                    if (playerStatusClient.isSelectingAnswer() == true) {
+                        System.out.println(playerStatusClient.getQuestionToAnswer());
+                        c1.show(mainPanel, "1");
 
-                            quizGUI.getQuestionText().setText(playerStatusClient.getQuestionToAnswer().getQuestionText());
-                            quizGUI.getA1().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(0));
-                            quizGUI.getA2().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(1));
-                            quizGUI.getA3().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(2));
-                            quizGUI.getA4().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(3));
+                        quizGUI.getQuestionText().setText(playerStatusClient.getQuestionToAnswer().getQuestionText());
+                        quizGUI.getA1().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(0));
+                        quizGUI.getA2().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(1));
+                        quizGUI.getA3().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(2));
+                        quizGUI.getA4().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(3));
 
-                                if(s.hasNext() == true){ String answer = s.next();
-                                out.writeObject(answer); }
-                        }
-
-                        if(playerStatusClient.isRoundFinished()){
-                            System.out.println("round finished.Presh botton to continue ");
-                            if(s.hasNext() == true){ String answer = s.next();
-                                out.writeObject(answer); };
-                        }
-
-                        if(playerStatusClient.isGameFinished()){
-                            System.out.println("Game is finished. Your score: ");
+                        if (s.hasNext() == true) {
+                            String answer = s.next();
+                            out.writeObject(answer);
                         }
                     }
+
+                    if (playerStatusClient.isRoundFinished()) {
+                        System.out.println("round finished.Presh botton to continue ");
+                        if (s.hasNext() == true) {
+                            String answer = s.next();
+                            out.writeObject(answer);
+                        }
+                        ;
+                    }
+
+                    if (playerStatusClient.isGameFinished()) {
+                        System.out.println("Game is finished. Your score: ");
+                    }
+                }
 
             }
 
@@ -126,24 +131,50 @@ public class NewClient extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
+
+    public void pressAnswersColorInteraction() {
+        String correctAnswer = playerStatusClient.getQuestionToAnswer().getCorrectAnswer();
+        if (quizGUI.getA1().getText().equals(correctAnswer)) {
+            quizGUI.getA1().setBackground(Color.green);
+        } else {
+            quizGUI.getA1().setBackground(Color.red);
+        }
+
+        if (quizGUI.getA2().getText().equals(correctAnswer)) {
+            quizGUI.getA2().setBackground(Color.green);
+        } else {
+            quizGUI.getA2().setBackground(Color.red);
+        }
+
+        if (quizGUI.getA3().getText().equals(correctAnswer)) {
+            quizGUI.getA3().setBackground(Color.green);
+        } else {
+            quizGUI.getA3().setBackground(Color.red);
+        }
+
+        if (quizGUI.getA4().getText().equals(correctAnswer)) {
+            quizGUI.getA4().setBackground(Color.green);
+        } else {
+            quizGUI.getA4().setBackground(Color.red);
+        }
+
+    }
+
     private class ButtonListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                if(((JButton)e.getSource()).getText() == "Kultur") {
+                if (((JButton) e.getSource()).getText() == "Kultur") {
                     out.writeObject(Category.CULTURE);
 
-                }
-                else if(((JButton)e.getSource()).getText() == "Musik") {
+                } else if (((JButton) e.getSource()).getText() == "Musik") {
                     out.writeObject(Category.MUSIC);
 
-                }
-                else if(((JButton)e.getSource()).getText() == "Sport") {
+                } else if (((JButton) e.getSource()).getText() == "Sport") {
                     out.writeObject(Category.SPORTS);
 
-                }
-                else if(((JButton)e.getSource()).getText() == "Gaming") {
+                } else if (((JButton) e.getSource()).getText() == "Gaming") {
                     out.writeObject(Category.GAMING);
 
                 }
@@ -174,6 +205,5 @@ public class NewClient extends JFrame {
 
     }
 
-    
 
 }
