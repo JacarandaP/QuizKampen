@@ -34,6 +34,7 @@ public class NewClient extends JFrame {
     private WaitingGUI waitGUI = new WaitingGUI();
     private JPanel mainPanel = new JPanel();
     private CardLayout c1 = new CardLayout();
+    private String answer;
 
 
     public NewClient() throws IOException {
@@ -113,6 +114,9 @@ public class NewClient extends JFrame {
         catGUI.getCategory2().addActionListener(buttonClick);
         catGUI.getCategory3().addActionListener(buttonClick);
         catGUI.getCategory4().addActionListener(buttonClick);
+        quizGUI.getA1().addActionListener(buttonClick);
+        quizGUI.getA2().addActionListener(buttonClick);
+        quizGUI.getA3().addActionListener(buttonClick);
         quizGUI.getA4().addActionListener(buttonClick);
     }
 
@@ -144,12 +148,32 @@ public class NewClient extends JFrame {
 
                 }
 
+                if (e.getSource() == quizGUI.getA1()) {
+                    answer = quizGUI.getA1().getText();
+                    out.writeObject(answer);
+
+                } else if (e.getSource() == quizGUI.getA2()) {
+                    answer = quizGUI.getA2().getText();
+                    out.writeObject(answer);
+
+                } else if (e.getSource() == quizGUI.getA3()) {
+                    answer = quizGUI.getA3().getText();
+                    out.writeObject(answer);
+
+                } else if (e.getSource() == quizGUI.getA1()) {
+                    answer = quizGUI.getA3().getText();
+                    out.writeObject(answer);
+
+                }
+
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
         }
+
+
     }
 
-
+    
 
 }
