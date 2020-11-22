@@ -4,6 +4,7 @@ import GUI.CategoryGUI;
 import GUI.QuizGUI;
 import GUI.WaitingGUI;
 import Serverside.Category;
+import Serverside.PlayerStatus;
 import Serverside.Question;
 
 import javax.swing.*;
@@ -15,6 +16,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Scanner;
 
 /**
  * Created by Max Erling
@@ -40,20 +42,40 @@ public class NewClient extends JFrame {
         frameSettnings();
 
         try (
-                PrintWriter out = new PrintWriter(socketToServer.getOutputStream(), true)) {
+                Scanner s = new Scanner(System.in); //Läser från terminalen. Ska bort sen
+                //printer används inte, ska bort?
+                PrintWriter outP = new PrintWriter(socketToServer.getOutputStream(), true)) {
             var in = new ObjectInputStream(socketToServer.getInputStream());
             Object fromServer;
+            PlayerStatus playerStatusClient = new PlayerStatus();
 
+
+            //Scanner och sout ska ersättas med gui
             while ((fromServer = in.readObject()) != null) {
-                System.out.println(fromServer);
-  /*              System.out.println("jag fick nagot");
-                if (fromServer instanceof String) {
-                    System.out.println("Resultat: " + fromServer);
-                }
-                if (fromServer instanceof Question) {
-                    System.out.println(((Question) fromServer).getQuestionText());
-                }
-*/
+                    if(fromServer instanceof PlayerStatus) {
+                        playerStatusClient = (PlayerStatus) fromServer;
+                        if (playerStatusClient.isSelectingCategory() == true) {
+                            System.out.println(playerStatusClient.getCategoriesToSelectBetween());
+                        } else if (((PlayerStatus) fromServer).isWaiting() == true){
+                            System.out.println(playerStatusClient.getReasonForWaiting());
+                        }
+                        if(playerStatusClient.isSelectingAnswer() == true){
+                            System.out.println(playerStatusClient.getQuestionToAnswer());
+                                if(s.hasNext() == true){ String answer = s.next();
+                                out.writeObject(answer); }
+                        }
+
+                        if(playerStatusClient.isRoundFinished()){
+                            System.out.println("round finished.Presh botton to continue ");
+                            if(s.hasNext() == true){ String answer = s.next();
+                                out.writeObject(answer); };
+                        }
+
+                        if(playerStatusClient.isGameFinished()){
+                            System.out.println("Game is finished. Your score: ");
+                        }
+                    }
+
             }
 
         } catch (Exception e) {

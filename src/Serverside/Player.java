@@ -74,16 +74,25 @@ public class Player extends Thread implements Serializable {
                         System.out.println("category has been selected");
                         game.categorySelected((Category) fromClient);
 
-
                     } else {
                         System.err.println("Expected category but received " + fromClient);
                     }
+                }
 
-                    sendCurrentStatus();
+               else if(playerStatus.isSelectingAnswer()) {
+                 //Här kommer svaret från gui
+                        if (fromClient instanceof String) {
+                        game.answerSelected(this, (String) fromClient);
+                    }
+                }
+
+               else if(playerStatus.isRoundFinished() && !playerStatus.isGameFinished()){
+                    game.playNexRound();
 
                 }
 
             }
+
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
