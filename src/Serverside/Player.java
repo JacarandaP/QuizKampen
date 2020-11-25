@@ -68,7 +68,6 @@ public class Player extends Thread implements Serializable {
             Object fromClient;
 
             while ((fromClient = in.readObject()) != null) {
-                //System.out.println((String)fromClient);
                 if (playerStatus.isSelectingCategory()) {
                     if (fromClient instanceof Category) {
                         System.out.println("category has been selected");
@@ -80,20 +79,19 @@ public class Player extends Thread implements Serializable {
                 }
 
                else if(playerStatus.isSelectingAnswer()) {
-                 //Här kommer svaret från gui
-                        if (fromClient instanceof String) {
-                            try {
-                                Thread.sleep(2000);
-                                game.answerSelected(this, (String) fromClient);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+                    if (fromClient instanceof String) {
+                        try {
+                            Thread.sleep(2000);
+                            game.answerSelected(this, (String) fromClient);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
+                    }
                 }
 
-               else if(playerStatus.isRoundFinished() && !playerStatus.isGameFinished()){
+               else if(playerStatus.isRoundFinished() && !playerStatus.isGameFinished()) {
                    game.playNexRound();
-                }
+               }
 
             }
 

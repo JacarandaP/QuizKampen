@@ -197,9 +197,7 @@ public class NewClient extends JFrame {
                 if (e.getSource() == quizGUI.getA1()) {
                     pressAnswersColorInteraction();
                     answer = quizGUI.getA1().getText();
-
                     out.writeObject(answer);
-
 
                 } else if (e.getSource() == quizGUI.getA2()) {
                     pressAnswersColorInteraction();
@@ -215,7 +213,6 @@ public class NewClient extends JFrame {
                     pressAnswersColorInteraction();
                     answer = quizGUI.getA4().getText();
                     out.writeObject(answer);
-
                 }
 
                 if (e.getSource() == nextRoundGUI.getContinueButton()) {
