@@ -1,5 +1,7 @@
 package GUI;
 
+import Serverside.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,7 +24,7 @@ public class CategoryGUI extends JPanel {
     private JPanel statusPanel = new JPanel();
     private JPanel categoryPanel = new JPanel(new BorderLayout());
     JPanel namePanel = new JPanel();
-    JLabel nameLabel = new JLabel("Fråga:");
+    JLabel nameLabel = new JLabel("Kategori: ");
 
 
 
@@ -52,7 +54,7 @@ public class CategoryGUI extends JPanel {
 
         statusPanel.add(winnerLabel);
 
-        namePanel.setBackground(Color.RED);
+        namePanel.setBackground(Color.PINK);
         namePanel.add(nameLabel);
 
         categoryPanel.add(namePanel,BorderLayout.NORTH);

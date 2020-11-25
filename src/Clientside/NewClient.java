@@ -31,11 +31,12 @@ public class NewClient extends JFrame {
     ObjectOutputStream out = new ObjectOutputStream(socketToServer.getOutputStream());
     private CategoryGUI catGUI = new CategoryGUI();
     private QuizGUI quizGUI = new QuizGUI();
-    private WaitingGUI waitGUI = new WaitingGUI();
+    private WaitingGUI waitGUI = new WaitingGUI("Waiting...");
     private JPanel mainPanel = new JPanel();
     private CardLayout c1 = new CardLayout();
     private String answer;
     private PlayerStatus playerStatusClient;
+    private WaitingGUI waitGUI2 = new WaitingGUI("Egg");
 
 
     public NewClient() throws IOException {
@@ -57,6 +58,7 @@ public class NewClient extends JFrame {
                     playerStatusClient = (PlayerStatus) fromServer;
                     if (playerStatusClient.isSelectingCategory() == true) {
                         System.out.println(playerStatusClient.getCategoriesToSelectBetween());
+//                        catGUI.getCategory1().setText();
                         c1.show(mainPanel, "0");
                     } else if (((PlayerStatus) fromServer).isWaiting() == true) {
                         System.out.println(playerStatusClient.getReasonForWaiting());
@@ -71,17 +73,14 @@ public class NewClient extends JFrame {
                         quizGUI.getA2().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(1));
                         quizGUI.getA3().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(2));
                         quizGUI.getA4().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(3));
+//                        Thread.sleep(2000);
 
-                        /*if (s.hasNext() == true) {
-                            String answer = s.next();
-                            out.writeObject(answer);
-                        }*/
-                        Thread.sleep(2000);
                         changeAnswersToDefaultColor();
                     }
 
                     if (playerStatusClient.isRoundFinished()) {
-                        System.out.println("round finished.Presh botton to continue ");
+                        c1.show(mainPanel, "3");
+                        //System.out.println("round finished.Presh botton to continue ");
                         /*if (s.hasNext() == true) {
                             String answer = s.next();
                             out.writeObject(answer);
@@ -112,6 +111,7 @@ public class NewClient extends JFrame {
         mainPanel.add(catGUI, "0");
         mainPanel.add(quizGUI, "1");
         mainPanel.add(waitGUI, "2");
+        mainPanel.add(waitGUI2, "3");
         add(mainPanel);
     }
 
@@ -160,9 +160,15 @@ public class NewClient extends JFrame {
             quizGUI.getA4().setBackground(Color.red);
         }
 
+
     }
 
     public void changeAnswersToDefaultColor() {
+//        try {
+//            Thread.sleep(2000);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
         quizGUI.getA1().setBackground(Color.pink);
         quizGUI.getA2().setBackground(Color.pink);
         quizGUI.getA3().setBackground(Color.pink);
@@ -192,7 +198,9 @@ public class NewClient extends JFrame {
                 if (e.getSource() == quizGUI.getA1()) {
                     pressAnswersColorInteraction();
                     answer = quizGUI.getA1().getText();
+
                     out.writeObject(answer);
+
 
                 } else if (e.getSource() == quizGUI.getA2()) {
                     pressAnswersColorInteraction();
@@ -210,8 +218,9 @@ public class NewClient extends JFrame {
                     out.writeObject(answer);
 
                 }
+                Thread.sleep(2000);
 
-            } catch (IOException ioException) {
+            } catch (IOException | InterruptedException ioException) {
                 ioException.printStackTrace();
             }
         }
