@@ -40,7 +40,7 @@ public class Client extends JFrame {
             Object fromServer;
 
             while ((fromServer = in.readObject()) != null) {
-                System.out.println("jag fick nagot");
+                //System.out.println("jag fick nagot");
                 if(fromServer instanceof String) {
                     System.out.println("Resultat: " + fromServer);
                 }

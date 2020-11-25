@@ -7,4 +7,5 @@ package GUI;
  * Class: Java20B
  */
 public class ResultGUI {
+
 }

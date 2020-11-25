@@ -18,6 +18,7 @@ public class Question implements Serializable {
         answers.add(answer2);
         answers.add(answer3);
         answers.add(correctAnswer);
+        this.answers = answers;
     }
 
     public List<String> getAnswers() {
