@@ -1,6 +1,7 @@
 package Clientside;
 
 import GUI.CategoryGUI;
+import GUI.NextRoundGUI;
 import GUI.QuizGUI;
 import GUI.WaitingGUI;
 import Serverside.Category;
@@ -32,11 +33,11 @@ public class NewClient extends JFrame {
     private CategoryGUI catGUI = new CategoryGUI();
     private QuizGUI quizGUI = new QuizGUI();
     private WaitingGUI waitGUI = new WaitingGUI("Waiting...");
+    private NextRoundGUI nextRoundGUI = new NextRoundGUI("Play next round: ");
     private JPanel mainPanel = new JPanel();
     private CardLayout c1 = new CardLayout();
     private String answer;
     private PlayerStatus playerStatusClient;
-    private WaitingGUI waitGUI2 = new WaitingGUI("Egg");
 
 
     public NewClient() throws IOException {
@@ -64,7 +65,7 @@ public class NewClient extends JFrame {
                         System.out.println(playerStatusClient.getReasonForWaiting());
                         c1.show(mainPanel, "2");
                     }
-                    if (playerStatusClient.isSelectingAnswer() == true) {
+                    if (playerStatusClient.isSelectingAnswer()) {
                         System.out.println(playerStatusClient.getQuestionToAnswer());
                         c1.show(mainPanel, "1");
 
@@ -78,6 +79,9 @@ public class NewClient extends JFrame {
 
                     if (playerStatusClient.isRoundFinished()) {
                         c1.show(mainPanel, "3");
+
+
+                        //c1.show(mainPanel, "3");
                         //System.out.println("round finished.Presh botton to continue ");
                         /*if (s.hasNext() == true) {
                             String answer = s.next();
@@ -88,6 +92,7 @@ public class NewClient extends JFrame {
 
                     if (playerStatusClient.isGameFinished()) {
                         System.out.println("Game is finished. Your score: ");
+                        // Call ResultGUI class.
                     }
                 }
 
@@ -109,7 +114,7 @@ public class NewClient extends JFrame {
         mainPanel.add(catGUI, "0");
         mainPanel.add(quizGUI, "1");
         mainPanel.add(waitGUI, "2");
-        mainPanel.add(waitGUI2, "3");
+        mainPanel.add(nextRoundGUI, "3");
         add(mainPanel);
     }
 
@@ -123,6 +128,7 @@ public class NewClient extends JFrame {
         quizGUI.getA2().addActionListener(buttonClick);
         quizGUI.getA3().addActionListener(buttonClick);
         quizGUI.getA4().addActionListener(buttonClick);
+        nextRoundGUI.getContinueButton().addActionListener(buttonClick);
     }
 
     public void frameSettnings() {
@@ -174,16 +180,16 @@ public class NewClient extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                if (((JButton) e.getSource()).getText() == "Kultur") {
+                if (((JButton) e.getSource()).getText() == Category.CULTURE.getCategoryName()) {
                     out.writeObject(Category.CULTURE);
 
-                } else if (((JButton) e.getSource()).getText() == "Musik") {
+                } else if (((JButton) e.getSource()).getText() == Category.MUSIC.getCategoryName()) {
                     out.writeObject(Category.MUSIC);
 
-                } else if (((JButton) e.getSource()).getText() == "Sport") {
+                } else if (((JButton) e.getSource()).getText() == Category.SPORTS.getCategoryName()) {
                     out.writeObject(Category.SPORTS);
 
-                } else if (((JButton) e.getSource()).getText() == "Gaming") {
+                } else if (((JButton) e.getSource()).getText() == Category.GAMING.getCategoryName()) {
                     out.writeObject(Category.GAMING);
 
                 }
@@ -210,6 +216,11 @@ public class NewClient extends JFrame {
                     answer = quizGUI.getA4().getText();
                     out.writeObject(answer);
 
+                }
+
+                if (e.getSource() == nextRoundGUI.getContinueButton()) {
+                    String send = ""; // if null, jumps to next round automatically
+                    out.writeObject(send);
                 }
 
             } catch (IOException ioException) {
