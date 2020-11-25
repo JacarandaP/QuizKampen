@@ -66,6 +66,7 @@ public class NewClient extends JFrame {
                         System.out.println(playerStatusClient.getQuestionToAnswer());
                         c1.show(mainPanel, "1");
 
+
                         quizGUI.getQuestionText().setText(playerStatusClient.getQuestionToAnswer().getQuestionText());
                         quizGUI.getA1().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(0));
                         quizGUI.getA2().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(1));

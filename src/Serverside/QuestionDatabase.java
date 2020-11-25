@@ -242,7 +242,7 @@ public class QuestionDatabase {
             "Edgar Degas",
             "Pablo Picasso");
     public static Question q10cult = new Question(Category.CULTURE,
-            "lken författare har INTE vunnit nobelpriset i litteratur?",
+            "'Vilken författare har INTE vunnit nobelpriset i litteratur?",
             "Bob Dylan",
             "Vargas Llosa",
             "Orhan Pamuk",
