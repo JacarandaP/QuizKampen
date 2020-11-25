@@ -12,7 +12,7 @@ import java.util.Objects;
  * Class: Java20B
  */
 public class Player extends Thread implements Serializable {
-    private String name;
+    protected String name;
     private Socket s;
     private Game game;
     private ObjectOutputStream out;
@@ -26,6 +26,7 @@ public class Player extends Thread implements Serializable {
         this.game = game;
         String welcomeMessage = "Waiting for both players to connect";
         playerStatus = new PlayerStatus();
+        playerStatus.setPlayerName(this.name);
         playerStatus.setWaiting(true);
 
         try  {
@@ -56,6 +57,7 @@ public class Player extends Thread implements Serializable {
         try {
             out.reset();
             out.writeObject(playerStatus);
+
             System.out.println("sending this " + playerStatus + "to " + name);
         } catch (IOException ie) { ie.printStackTrace(); }
     }

@@ -5,6 +5,7 @@ import GUI.NextRoundGUI;
 import GUI.QuizGUI;
 import GUI.WaitingGUI;
 import Serverside.Category;
+import Serverside.Player;
 import Serverside.PlayerStatus;
 import Serverside.Question;
 
@@ -38,10 +39,12 @@ public class NewClient extends JFrame {
     private CardLayout c1 = new CardLayout();
     private String answer;
     private PlayerStatus playerStatusClient;
+    private Integer counter = 0;
 
 
     public NewClient() throws IOException {
         setupLayoutAndPanels();
+        setupButtonInteraction();
         setupButtonInteraction();
         frameSettnings();
 
@@ -57,6 +60,8 @@ public class NewClient extends JFrame {
             while ((fromServer = in.readObject()) != null) {
                 if (fromServer instanceof PlayerStatus) {
                     playerStatusClient = (PlayerStatus) fromServer;
+                    quizGUI.setPlayerName(playerStatusClient.getPlayerName());
+                    catGUI.setPlayerName(playerStatusClient.getPlayerName());
                     if (playerStatusClient.isSelectingCategory() == true) {
                         System.out.println(playerStatusClient.getCategoriesToSelectBetween());
 //                        catGUI.getCategory1().setText();
@@ -69,6 +74,7 @@ public class NewClient extends JFrame {
                         System.out.println(playerStatusClient.getQuestionToAnswer());
                         c1.show(mainPanel, "1");
 
+
                         quizGUI.getQuestionText().setText(playerStatusClient.getQuestionToAnswer().getQuestionText());
                         quizGUI.getA1().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(0));
                         quizGUI.getA2().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(1));
@@ -79,15 +85,9 @@ public class NewClient extends JFrame {
 
                     if (playerStatusClient.isRoundFinished()) {
                         c1.show(mainPanel, "3");
+                        System.out.println("your score in this round: " + playerStatusClient.getScore());
+                        System.out.println("round finished.Presh botton to continue ");
 
-
-                        //c1.show(mainPanel, "3");
-                        //System.out.println("round finished.Presh botton to continue ");
-                        /*if (s.hasNext() == true) {
-                            String answer = s.next();
-                            out.writeObject(answer);
-                        }*/
-                        ;
                     }
 
                     if (playerStatusClient.isGameFinished()) {
@@ -95,14 +95,10 @@ public class NewClient extends JFrame {
                         // Call ResultGUI class.
                     }
                 }
-
             }
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
-
     }
 
     public static void main(String[] args) throws IOException {
@@ -138,28 +134,39 @@ public class NewClient extends JFrame {
     }
 
 
-    public void pressAnswersColorInteraction() {
+    public void pressAnswersColorInteraction() throws IOException {
         String correctAnswer = playerStatusClient.getQuestionToAnswer().getCorrectAnswer();
         if (quizGUI.getA1().getText().equals(correctAnswer)) {
             quizGUI.getA1().setBackground(Color.green);
+
+
+
         } else {
             quizGUI.getA1().setBackground(Color.red);
         }
 
         if (quizGUI.getA2().getText().equals(correctAnswer)) {
             quizGUI.getA2().setBackground(Color.green);
+
+
+
         } else {
             quizGUI.getA2().setBackground(Color.red);
         }
 
         if (quizGUI.getA3().getText().equals(correctAnswer)) {
             quizGUI.getA3().setBackground(Color.green);
+
+
+
         } else {
             quizGUI.getA3().setBackground(Color.red);
         }
 
         if (quizGUI.getA4().getText().equals(correctAnswer)) {
             quizGUI.getA4().setBackground(Color.green);
+
+
         } else {
             quizGUI.getA4().setBackground(Color.red);
         }
@@ -199,15 +206,18 @@ public class NewClient extends JFrame {
                     answer = quizGUI.getA1().getText();
                     out.writeObject(answer);
 
+
                 } else if (e.getSource() == quizGUI.getA2()) {
                     pressAnswersColorInteraction();
                     answer = quizGUI.getA2().getText();
                     out.writeObject(answer);
 
+
                 } else if (e.getSource() == quizGUI.getA3()) {
                     pressAnswersColorInteraction();
                     answer = quizGUI.getA3().getText();
                     out.writeObject(answer);
+
 
                 } else if (e.getSource() == quizGUI.getA4()) {
                     pressAnswersColorInteraction();
@@ -218,6 +228,7 @@ public class NewClient extends JFrame {
                 if (e.getSource() == nextRoundGUI.getContinueButton()) {
                     String send = ""; // if null, jumps to next round automatically
                     out.writeObject(send);
+
                 }
 
             } catch (IOException ioException) {

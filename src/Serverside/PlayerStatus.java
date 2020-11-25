@@ -16,9 +16,19 @@ public class PlayerStatus implements Serializable {
     private boolean waiting;
     private String reasonForWaiting;
 
+    private String playerName;
+
     private List<Category> categoriesToSelectBetween;
     private Question questionToAnswer;
     private Integer currentQuestionIndex = null;
+
+    private Player player;
+
+    private int score;
+
+    public String getUserName(){
+        return  player.getUserName();
+    }
 
     public Integer getCurrentQuestionIndex() {
         return currentQuestionIndex;
@@ -81,6 +91,9 @@ public class PlayerStatus implements Serializable {
         return categoriesToSelectBetween;
     }
 
+    public String getPlayerName() { return playerName; }
+    public void setPlayerName(String name) { playerName = name; }
+
     public void setCategoriesToSelectBetween(List<Category> categoriesToSelectBetween) {
         this.categoriesToSelectBetween = categoriesToSelectBetween;
     }
@@ -94,6 +107,14 @@ public class PlayerStatus implements Serializable {
     }
 
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     @Override
     public String toString() {
         return "PlayerStatus{" +
@@ -105,8 +126,12 @@ public class PlayerStatus implements Serializable {
                 ", reasonForWaiting='" + reasonForWaiting + '\'' +
                 ", categoriesToSelectBetween=" + categoriesToSelectBetween +
                 ", questionToAnswer=" + questionToAnswer +
+                ", currentQuestionIndex=" + currentQuestionIndex +
+                ", player=" + player +
+                ", score=" + score +
                 '}';
     }
-
-
 }
+
+
+

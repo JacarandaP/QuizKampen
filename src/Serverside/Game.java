@@ -18,6 +18,8 @@ public class Game {
     private  List<Question> questionsInRound;
     private int currentRound = 1;
     private final int numberOfRounds;
+    private int scoreCounter = 0;
+
 
 
     public Game() {
@@ -67,6 +69,13 @@ public class Game {
 
     public void answerSelected(Player player, String answer){
         int index = player.getPlayerStatus().getCurrentQuestionIndex();
+
+        if(player.getPlayerStatus().getQuestionToAnswer().getCorrectAnswer().equals(answer)){
+            scoreCounter ++;
+            player.getPlayerStatus().setScore(scoreCounter);
+        }
+        else {player.getPlayerStatus().setScore(scoreCounter);}
+
         if (index == questionsInRound.size()-1 ) {
             Player otherPlayer = getOtherPlayer(player);
             if (otherPlayer.getPlayerStatus().isSelectingAnswer()) {
@@ -78,9 +87,11 @@ public class Game {
             } else {
                 player.getPlayerStatus().setSelectingAnswer(false);
                 player.getPlayerStatus().setRoundFinished(true);
+
                 otherPlayer.getPlayerStatus().setSelectingAnswer(false);
                 otherPlayer.getPlayerStatus().setRoundFinished(true);
                 otherPlayer.getPlayerStatus().setWaiting(false);
+
 
                 if(currentRound == numberOfRounds) {
 
@@ -142,6 +153,10 @@ public class Game {
         playerY.getPlayerStatus().setReasonForWaiting("Waiting for other player to select a category");
         playerY.sendCurrentStatus();
     }
+
+    /*public int scoureCounter (Integer score){
+       return score;
+    }*/
 
 
 }

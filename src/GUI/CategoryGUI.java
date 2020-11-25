@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
  */
 public class CategoryGUI extends JPanel {
 
-    JLabel winnerLabel = new JLabel("Vinnare:");
+    JLabel winnerLabel = new JLabel("Resultat:");
     JButton category1 = new JButton("Kultur");
     JButton category2 = new JButton("Musik");
     JButton category3 = new JButton("Sport");
@@ -25,8 +25,7 @@ public class CategoryGUI extends JPanel {
     private JPanel categoryPanel = new JPanel(new BorderLayout());
     JPanel namePanel = new JPanel();
     JLabel nameLabel = new JLabel("Kategori: ");
-
-
+    JLabel nameLabel = new JLabel("spelarens namn" );
 
 
     public CategoryGUI() {
@@ -38,19 +37,14 @@ public class CategoryGUI extends JPanel {
         category4.setBackground(Color.lightGray);
         gamePanel.add(category1);
 
-
-
         category2.setEnabled(true);
         gamePanel.add(category2);
-
 
         category3.setEnabled(true);
         gamePanel.add(category3);
 
-
         category4.setEnabled(true);
         gamePanel.add(category4);
-
 
         statusPanel.add(winnerLabel);
 
@@ -64,11 +58,9 @@ public class CategoryGUI extends JPanel {
         add(categoryPanel);
     }
 
-
-
-
-
-
+    public void setPlayerName(String name) {
+        this.nameLabel.setText(name);
+    }
 
     public JButton getCategory1() {
         return category1;
