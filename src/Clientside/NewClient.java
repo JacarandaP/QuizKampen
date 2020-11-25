@@ -4,6 +4,7 @@ import GUI.CategoryGUI;
 import GUI.QuizGUI;
 import GUI.WaitingGUI;
 import Serverside.Category;
+import Serverside.Player;
 import Serverside.PlayerStatus;
 import Serverside.Question;
 
@@ -42,6 +43,7 @@ public class NewClient extends JFrame {
     public NewClient() throws IOException {
         setupLayoutAndPanels();
         setupButtonInteraction();
+        setupButtonInteraction();
         frameSettnings();
 
         try (
@@ -56,6 +58,8 @@ public class NewClient extends JFrame {
             while ((fromServer = in.readObject()) != null) {
                 if (fromServer instanceof PlayerStatus) {
                     playerStatusClient = (PlayerStatus) fromServer;
+                    quizGUI.setPlayerName(playerStatusClient.getPlayerName());
+                    catGUI.setPlayerName(playerStatusClient.getPlayerName());
                     if (playerStatusClient.isSelectingCategory() == true) {
                         System.out.println(playerStatusClient.getCategoriesToSelectBetween());
                         c1.show(mainPanel, "0");
@@ -98,14 +102,10 @@ public class NewClient extends JFrame {
                         System.out.println("Game is finished. Your score: ");
                     }
                 }
-
             }
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
-
     }
 
     public static void main(String[] args) throws IOException {

@@ -1,5 +1,6 @@
 package GUI;
 
+import Serverside.Question;
 import Serverside.QuestionDatabase;
 
 import javax.swing.*;
@@ -14,10 +15,12 @@ import java.awt.event.ActionListener;
  * Class: Java20B
  */
 public class QuizGUI extends JPanel {
-    private JPanel quizPanel = new JPanel(new GridLayout(2, 0));
+    private JPanel quizPanel = new JPanel(new GridLayout(3, 0));
     private JPanel questionPanel = new JPanel(new GridBagLayout());
     private JPanel answerPanel = new JPanel(new GridLayout(2, 0));
     private JLabel questionText = new JLabel("");
+    JPanel namePanel = new JPanel();
+    private JLabel nameLabel = new JLabel("spelarens namn" );
     private JButton a1 = new JButton();
     private JButton a2 = new JButton();
     private JButton a3 = new JButton();
@@ -37,19 +40,34 @@ public class QuizGUI extends JPanel {
         a4.setForeground(Color.darkGray);
 
 
+        quizPanel.add(namePanel);
         quizPanel.add(questionPanel);
         questionPanel.add(questionText);
         questionPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         quizPanel.add(answerPanel);
+        namePanel.setBackground(Color.RED);
+        namePanel.setPreferredSize(new Dimension(500, 20)); // lös storleken på namn som visas rutan
+        namePanel.add(nameLabel);
         answerPanel.add(a1);
         answerPanel.add(a2);
         answerPanel.add(a3);
         answerPanel.add(a4);
 
         quizPanel.setPreferredSize(new Dimension(500,500));
-
         add(quizPanel);
 
+
+    }
+    public void setPlayerName(String name) {
+        this.nameLabel.setText(name);
+    }
+
+    public void setQuestion(Question question){
+        questionText.setText(question.getQuestionText());
+        a1.setText(question.getAnswers().get(0));
+        a2.setText(question.getAnswers().get(1));
+        a3.setText(question.getAnswers().get(2));
+        a4.setText(question.getAnswers().get(3));
 
     }
 

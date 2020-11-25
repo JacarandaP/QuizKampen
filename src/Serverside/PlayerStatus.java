@@ -16,6 +16,8 @@ public class PlayerStatus implements Serializable {
     private boolean waiting;
     private String reasonForWaiting;
 
+    private String playerName;
+
     private List<Category> categoriesToSelectBetween;
     private Question questionToAnswer;
     private Integer currentQuestionIndex = null;
@@ -88,6 +90,9 @@ public class PlayerStatus implements Serializable {
     public List<Category> getCategoriesToSelectBetween() {
         return categoriesToSelectBetween;
     }
+
+    public String getPlayerName() { return playerName; }
+    public void setPlayerName(String name) { playerName = name; }
 
     public void setCategoriesToSelectBetween(List<Category> categoriesToSelectBetween) {
         this.categoriesToSelectBetween = categoriesToSelectBetween;
