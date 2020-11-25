@@ -20,6 +20,12 @@ public class PlayerStatus implements Serializable {
     private Question questionToAnswer;
     private Integer currentQuestionIndex = null;
 
+    private Player player;
+
+    public String getUserName(){
+        return  player.getUserName();
+    }
+
     public Integer getCurrentQuestionIndex() {
         return currentQuestionIndex;
     }
@@ -95,6 +101,7 @@ public class PlayerStatus implements Serializable {
 
 
     @Override
+
     public String toString() {
         return "PlayerStatus{" +
                 "selectingCategory=" + selectingCategory +
@@ -105,8 +112,11 @@ public class PlayerStatus implements Serializable {
                 ", reasonForWaiting='" + reasonForWaiting + '\'' +
                 ", categoriesToSelectBetween=" + categoriesToSelectBetween +
                 ", questionToAnswer=" + questionToAnswer +
+                ", currentQuestionIndex=" + currentQuestionIndex +
+                ", player=" + player +
                 '}';
     }
-
-
 }
+
+
+
