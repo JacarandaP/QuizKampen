@@ -97,8 +97,6 @@ public class Game {
 
                     player.getPlayerStatus().setGameFinished(true);
                     otherPlayer.getPlayerStatus().setGameFinished(true);
-//                    player.getPlayerStatus().setWaiting(false);
-//                    otherPlayer.getPlayerStatus().setWaiting(false);
 
                 }
 

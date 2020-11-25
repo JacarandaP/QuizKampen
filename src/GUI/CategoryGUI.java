@@ -24,9 +24,7 @@ public class CategoryGUI extends JPanel {
     private JPanel statusPanel = new JPanel();
     private JPanel categoryPanel = new JPanel(new BorderLayout());
     JPanel namePanel = new JPanel();
-    JLabel nameLabel = new JLabel("Kategori: ");
     JLabel nameLabel = new JLabel("spelarens namn" );
-
 
     public CategoryGUI() {
         gamePanel.setLayout(new GridLayout(2,2));
@@ -48,7 +46,7 @@ public class CategoryGUI extends JPanel {
 
         statusPanel.add(winnerLabel);
 
-        namePanel.setBackground(Color.PINK);
+        namePanel.setBackground(Color.RED);
         namePanel.add(nameLabel);
 
         categoryPanel.add(namePanel,BorderLayout.NORTH);
