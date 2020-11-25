@@ -73,8 +73,6 @@ public class NewClient extends JFrame {
                         quizGUI.getA2().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(1));
                         quizGUI.getA3().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(2));
                         quizGUI.getA4().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(3));
-//                        Thread.sleep(2000);
-
                         changeAnswersToDefaultColor();
                     }
 
@@ -164,11 +162,6 @@ public class NewClient extends JFrame {
     }
 
     public void changeAnswersToDefaultColor() {
-//        try {
-//            Thread.sleep(2000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
         quizGUI.getA1().setBackground(Color.pink);
         quizGUI.getA2().setBackground(Color.pink);
         quizGUI.getA3().setBackground(Color.pink);
@@ -218,9 +211,8 @@ public class NewClient extends JFrame {
                     out.writeObject(answer);
 
                 }
-                Thread.sleep(2000);
 
-            } catch (IOException | InterruptedException ioException) {
+            } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
         }

@@ -82,13 +82,17 @@ public class Player extends Thread implements Serializable {
                else if(playerStatus.isSelectingAnswer()) {
                  //Här kommer svaret från gui
                         if (fromClient instanceof String) {
-                        game.answerSelected(this, (String) fromClient);
-                    }
+                            try {
+                                Thread.sleep(2000);
+                                game.answerSelected(this, (String) fromClient);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
                 }
 
                else if(playerStatus.isRoundFinished() && !playerStatus.isGameFinished()){
-                    game.playNexRound();
-
+                   game.playNexRound();
                 }
 
             }
