@@ -44,7 +44,7 @@ public class NewClient extends JFrame {
         frameSettnings();
 
         try (
-                Scanner s = new Scanner(System.in); //Läser från terminalen. Ska bort sen
+                //Scanner s = new Scanner(System.in); //Läser från terminalen. Ska bort sen
                 //printer används inte, ska bort?
                 PrintWriter outP = new PrintWriter(socketToServer.getOutputStream(), true)) {
             var in = new ObjectInputStream(socketToServer.getInputStream());
@@ -72,19 +72,20 @@ public class NewClient extends JFrame {
                         quizGUI.getA3().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(2));
                         quizGUI.getA4().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(3));
 
-                        if (s.hasNext() == true) {
+                        /*if (s.hasNext() == true) {
                             String answer = s.next();
                             out.writeObject(answer);
-                        }
+                        }*/
+                        Thread.sleep(2000);
                         changeAnswersToDefaultColor();
                     }
 
                     if (playerStatusClient.isRoundFinished()) {
                         System.out.println("round finished.Presh botton to continue ");
-                        if (s.hasNext() == true) {
+                        /*if (s.hasNext() == true) {
                             String answer = s.next();
                             out.writeObject(answer);
-                        }
+                        }*/
                         ;
                     }
 
