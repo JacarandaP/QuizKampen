@@ -24,6 +24,8 @@ public class PlayerStatus implements Serializable {
 
     private Player player;
 
+    private int score;
+
     public String getUserName(){
         return  player.getUserName();
     }
@@ -105,8 +107,15 @@ public class PlayerStatus implements Serializable {
     }
 
 
-    @Override
+    public int getScore() {
+        return score;
+    }
 
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    @Override
     public String toString() {
         return "PlayerStatus{" +
                 "selectingCategory=" + selectingCategory +
@@ -119,6 +128,7 @@ public class PlayerStatus implements Serializable {
                 ", questionToAnswer=" + questionToAnswer +
                 ", currentQuestionIndex=" + currentQuestionIndex +
                 ", player=" + player +
+                ", score=" + score +
                 '}';
     }
 }

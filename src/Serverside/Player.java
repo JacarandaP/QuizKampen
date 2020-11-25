@@ -85,6 +85,7 @@ public class Player extends Thread implements Serializable {
                  //Här kommer svaret från gui
                         if (fromClient instanceof String) {
                         game.answerSelected(this, (String) fromClient);
+
                     }
                 }
 

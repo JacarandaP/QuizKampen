@@ -37,6 +37,7 @@ public class NewClient extends JFrame {
     private CardLayout c1 = new CardLayout();
     private String answer;
     private PlayerStatus playerStatusClient;
+    private Integer counter = 0;
 
 
     public NewClient() throws IOException {
@@ -77,6 +78,8 @@ public class NewClient extends JFrame {
                         quizGUI.getA3().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(2));
                         quizGUI.getA4().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(3));
 
+
+
                         /*if (s.hasNext() == true) {
                             String answer = s.next();
                             out.writeObject(answer);
@@ -86,6 +89,7 @@ public class NewClient extends JFrame {
                     }
 
                     if (playerStatusClient.isRoundFinished()) {
+                        System.out.println("your score in this round: " + playerStatusClient.getScore());
                         System.out.println("round finished.Presh botton to continue ");
                         /*if (s.hasNext() == true) {
                             String answer = s.next();
@@ -135,28 +139,39 @@ public class NewClient extends JFrame {
     }
 
 
-    public void pressAnswersColorInteraction() {
+    public void pressAnswersColorInteraction() throws IOException {
         String correctAnswer = playerStatusClient.getQuestionToAnswer().getCorrectAnswer();
         if (quizGUI.getA1().getText().equals(correctAnswer)) {
             quizGUI.getA1().setBackground(Color.green);
+
+
+
         } else {
             quizGUI.getA1().setBackground(Color.red);
         }
 
         if (quizGUI.getA2().getText().equals(correctAnswer)) {
             quizGUI.getA2().setBackground(Color.green);
+
+
+
         } else {
             quizGUI.getA2().setBackground(Color.red);
         }
 
         if (quizGUI.getA3().getText().equals(correctAnswer)) {
             quizGUI.getA3().setBackground(Color.green);
+
+
+
         } else {
             quizGUI.getA3().setBackground(Color.red);
         }
 
         if (quizGUI.getA4().getText().equals(correctAnswer)) {
             quizGUI.getA4().setBackground(Color.green);
+
+
         } else {
             quizGUI.getA4().setBackground(Color.red);
         }
@@ -195,20 +210,24 @@ public class NewClient extends JFrame {
                     answer = quizGUI.getA1().getText();
                     out.writeObject(answer);
 
+
                 } else if (e.getSource() == quizGUI.getA2()) {
                     pressAnswersColorInteraction();
                     answer = quizGUI.getA2().getText();
                     out.writeObject(answer);
+
 
                 } else if (e.getSource() == quizGUI.getA3()) {
                     pressAnswersColorInteraction();
                     answer = quizGUI.getA3().getText();
                     out.writeObject(answer);
 
+
                 } else if (e.getSource() == quizGUI.getA4()) {
                     pressAnswersColorInteraction();
                     answer = quizGUI.getA4().getText();
                     out.writeObject(answer);
+
 
                 }
 
