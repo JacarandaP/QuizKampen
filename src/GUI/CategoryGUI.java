@@ -29,21 +29,23 @@ public class CategoryGUI extends JPanel {
 
     public CategoryGUI() {
         gamePanel.setLayout(new GridLayout(2,2));
-        //category1.addActionListener(buttonClick); //***
         category1.setEnabled(true);
         category1.setBackground(Color.lightGray);
+        category2.setBackground(Color.lightGray);
+        category3.setBackground(Color.lightGray);
+        category4.setBackground(Color.lightGray);
         gamePanel.add(category1);
 
 
-        //category2.addActionListener(buttonClick);
+
         category2.setEnabled(true);
         gamePanel.add(category2);
 
-        //category3.addActionListener(buttonClick);
+
         category3.setEnabled(true);
         gamePanel.add(category3);
 
-        //category4.addActionListener(buttonClick);
+
         category4.setEnabled(true);
         gamePanel.add(category4);
 
