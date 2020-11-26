@@ -60,6 +60,7 @@ public class NewClient extends JFrame {
                     playerStatusClient = (PlayerStatus) fromServer;
                     quizGUI.setPlayerName(playerStatusClient.getPlayerName());
                     catGUI.setPlayerName(playerStatusClient.getPlayerName());
+                    nextRoundGUI.setPlayerNames(playerStatusClient.getPlayerName(), playerStatusClient.getPlayerName()); //
                     if (playerStatusClient.isSelectingCategory() == true) {
                         System.out.println(playerStatusClient.getCategoriesToSelectBetween());
 //                        catGUI.getCategory1().setText();

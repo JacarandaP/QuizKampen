@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
  * Class: Java20B
  */
 public class QuizGUI extends JPanel {
-    private JPanel quizPanel = new JPanel(new GridLayout(2, 0));
+    private JPanel quizPanel = new JPanel(new GridLayout(3, 0));
     private JPanel questionPanel = new JPanel(new GridBagLayout());
     private JPanel answerPanel = new JPanel(new GridLayout(2, 0));
     private JLabel questionText = new JLabel("");
@@ -26,9 +26,9 @@ public class QuizGUI extends JPanel {
     private JButton a4 = new JButton();
 
     public QuizGUI() {
-        quizPanel.setBackground(Color.blue);
-        questionPanel.setBackground(Color.white);
-        answerPanel.setBackground(Color.yellow);
+//        quizPanel.setBackground(Color.blue);
+//        questionPanel.setBackground(Color.white);
+//        answerPanel.setBackground(Color.yellow);
         a1.setBackground(Color.pink);
         a1.setForeground(Color.darkGray);
         a2.setBackground(Color.pink);
