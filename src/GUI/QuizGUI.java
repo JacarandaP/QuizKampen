@@ -38,12 +38,11 @@ public class QuizGUI extends JPanel {
         a4.setBackground(Color.pink);
         a4.setForeground(Color.darkGray);
 
-        quizPanel.add(namePanel);
+
         quizPanel.add(questionPanel);
         questionPanel.add(questionText);
         questionPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         quizPanel.add(answerPanel);
-        namePanel.add(nameLabel);
         answerPanel.add(a1);
         answerPanel.add(a2);
         answerPanel.add(a3);
@@ -55,10 +54,11 @@ public class QuizGUI extends JPanel {
 
 
     }
-
     public void setPlayerName(String name) {
         this.nameLabel.setText(name);
     }
+
+
 
     public void changeButtonsToDefaultColor() {
         a1.setBackground(Color.pink);
@@ -67,6 +67,7 @@ public class QuizGUI extends JPanel {
         a4.setBackground(Color.pink);
 
     }
+
 
     public JLabel getQuestionText() {
         return questionText;
