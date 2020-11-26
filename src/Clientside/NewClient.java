@@ -75,17 +75,21 @@ public class NewClient extends JFrame {
                         quizGUI.getA3().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(2));
                         quizGUI.getA4().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(3));
                         changeAnswersToDefaultColor();
-                        System.out.println("your score: " + playerStatusClient.getScore());
+
                     }
 
                     if (playerStatusClient.isRoundFinished()) {
                         c1.show(mainPanel, "3");
+                        System.out.println("your score in this round: " + playerStatusClient.getScore() +
+                                " Your opponent's score in this round: " + playerStatusClient.getYourOpponentsScore());
 
 
                     }
 
                     if (playerStatusClient.isGameFinished()) {
-                        System.out.println("Game is finished. Your score: ");
+                        System.out.println("Game is finished. Your final score: " + playerStatusClient.getScore() +
+                                " Your opponent's final score: " + playerStatusClient.getYourOpponentsScore());
+
                         // Call ResultGUI class.
                     }
                 }

@@ -19,14 +19,22 @@ public class PlayerStatus implements Serializable {
     private List<Category> categoriesToSelectBetween;
     private Question questionToAnswer;
     private Integer currentQuestionIndex = null;
-    private int score;
+    private int yourScore;
+    private int yourOpponentsScore;
 
+    public void setYourOpponentsScore(int opponentsScore){
+        this.yourOpponentsScore = opponentsScore;
+    }
+
+    public int getYourOpponentsScore(){
+        return yourOpponentsScore;
+    }
     public int getScore() {
-        return score;
+        return yourScore;
     }
 
     public void setScore(int score) {
-        this.score = score;
+        this.yourScore= score;
     }
 
     public Integer getCurrentQuestionIndex() {
@@ -103,7 +111,7 @@ public class PlayerStatus implements Serializable {
     }
 
     public void incrementScore(){
-        score++;
+        yourScore++;
     }
 
 
@@ -119,7 +127,8 @@ public class PlayerStatus implements Serializable {
                 ", categoriesToSelectBetween=" + categoriesToSelectBetween +
                 ", questionToAnswer=" + questionToAnswer +
                 ", currentQuestionIndex=" + currentQuestionIndex +
-                ", score=" + score +
+                ", yourScore=" + yourScore +
+                ", yourOpponentsScore=" + yourOpponentsScore +
                 '}';
     }
 }

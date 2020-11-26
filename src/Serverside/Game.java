@@ -81,9 +81,12 @@ public class Game {
             } else {
                 player.getPlayerStatus().setSelectingAnswer(false);
                 player.getPlayerStatus().setRoundFinished(true);
+
                 otherPlayer.getPlayerStatus().setSelectingAnswer(false);
                 otherPlayer.getPlayerStatus().setRoundFinished(true);
                 otherPlayer.getPlayerStatus().setWaiting(false);
+                player.getPlayerStatus().setYourOpponentsScore(otherPlayer.getPlayerStatus().getScore());
+                otherPlayer.getPlayerStatus().setYourOpponentsScore(player.getPlayerStatus().getScore());
 
                 if(currentRound == numberOfRounds) {
 
@@ -148,11 +151,15 @@ public class Game {
             } else {
                 System.out.println(player.getUserName() + " wrong answer");
             }
-
-
-
     }
 
+   /* public void setOpponentScore(Player player){
+        Player otherPlayer = getOtherPlayer(player);
+        player.getPlayerStatus().setYourOpponentsScore(otherPlayer.getPlayerStatus().getScore());
+
+
+
+    }*/
 }
 
 
