@@ -17,7 +17,7 @@ public class Player extends Thread implements Serializable {
     private Game game;
     private ObjectOutputStream out;
     private PlayerStatus playerStatus;
-    private Score score = new Score();
+
 
 
 
@@ -28,6 +28,7 @@ public class Player extends Thread implements Serializable {
         String welcomeMessage = "Waiting for both players to connect";
         playerStatus = new PlayerStatus();
         playerStatus.setWaiting(true);
+
 
         try  {
             out = new ObjectOutputStream(s.getOutputStream());
@@ -82,9 +83,10 @@ public class Player extends Thread implements Serializable {
                else if(playerStatus.isSelectingAnswer()) {
                     if (fromClient instanceof String) {
                         try {
-                            score.countRightAnswer((String) fromClient);
+
                             Thread.sleep(2000);
                             game.answerSelected(this, (String) fromClient);
+                            game.countRightAnswer((String) fromClient, this);
 
 
                         } catch (InterruptedException e) {
@@ -95,7 +97,7 @@ public class Player extends Thread implements Serializable {
                 }
 
                else if(playerStatus.isRoundFinished() && !playerStatus.isGameFinished()) {
-                    System.out.println("This score" + score.returnNameScore());
+                    System.out.println("This score" + game.returnNameScore());
                    game.playNexRound();
                }
 

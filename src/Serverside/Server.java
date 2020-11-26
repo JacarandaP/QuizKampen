@@ -15,10 +15,8 @@ public class Server {
 
                 Game game = new Game();
                 Player playerX = new Player(serverSocket.accept(), "PlayerX", game);
-                Score.playerX = playerX;
                 playerX.start();
                 Player playerY = new Player(serverSocket.accept(), "PlayerY", game);
-                Score.playerY = playerY;
                 playerY.start();
 
             }

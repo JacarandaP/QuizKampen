@@ -14,16 +14,16 @@ import java.nio.file.StandardOpenOption;
  */
 
 public class Score implements Serializable {
-    static Player playerX;
-    static Player playerY;
+    private Player playerX;
+    private Player playerY;
     private int scoreX;
     private int scoreY;
     private String answer;
     private String playerScore = "playerScoreFile.txt";
 
 
-    public void score (Player player, String answer){
-        this.answer = answer;
+    public void score() {
+
 
     }
 
@@ -54,7 +54,7 @@ public class Score implements Serializable {
     }
     */
 
-    public String returnNameScore(){
+    public String returnNameScore() {
         return playerX.getName() + " Score: " + scoreX + "\n" +
                 playerY.getName() + " Score: " + scoreY;
     }
@@ -62,6 +62,7 @@ public class Score implements Serializable {
     public int getScoreY() {
         return scoreY;
     }
+
     public String getAnswer() {
         return answer;
     }
@@ -70,23 +71,25 @@ public class Score implements Serializable {
         this.answer = answer;
     }
 
-    public void countRightAnswer(String answer){
+    public void countRightAnswer(String answer, Player player) {
+        if (playerX.equals(player)) {
+            if (playerX.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer)) {
+                System.out.println("X:" + playerX.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer));
+                scoreX++;
+            } else {
+                System.out.println("falseX");
+            }
+        } else if (playerY.equals(player)) {
+            if (playerY.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer)) {
+                System.out.println("Y:" + playerY.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer));
+                scoreY++;
+            }
 
-
-        if(playerX.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer))
-        {
-            System.out.println(playerX.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer));
-            scoreX ++;
+            else {
+                System.out.println("falseY");
+            }
 
         }
-        if(playerY.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer)){
-            System.out.println(playerY.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer));
-            scoreY ++;
-
-        }
-
-
-    }
 
     /*public void writeScoreToText(String playerScoreInfo) {
         String dataLine = playerScoreInfo;
@@ -99,6 +102,8 @@ public class Score implements Serializable {
         }
 
     }*/
+
+    }
 }
 
 

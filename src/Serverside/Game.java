@@ -18,7 +18,9 @@ public class Game {
     private  List<Question> questionsInRound;
     private int currentRound = 1;
     private final int numberOfRounds;
-    private int counter;
+    private int scoreX;
+    private int scoreY;
+
 
 
 
@@ -140,8 +142,31 @@ public class Game {
         playerY.getPlayerStatus().setReasonForWaiting("Waiting for other player to select a category");
         playerY.sendCurrentStatus();
     }
+    public void countRightAnswer(String answer, Player player) {
+        if (playerX.equals(player)) {
 
+            if (player.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer)) {
+                System.out.println("X:" + player.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer));
+                scoreX++;
+            } else {
+                System.out.println("wrong answer player X");
+            }
+        } else if (playerY.equals(player)) {
 
+            if (player.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer)) {
+                System.out.println("Y:" + player.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer));
+                scoreY++;
+            } else {
+                System.out.println("wrong answer player Y");
+            }
+
+        }
+    }
+
+    public String returnNameScore() {
+        return playerX.getUserName() + " Score: " + scoreX + "\n" +
+                playerY.getUserName() + " Score: " + scoreY;
+    }
 }
 
 
