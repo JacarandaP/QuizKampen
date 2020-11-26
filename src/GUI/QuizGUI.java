@@ -18,6 +18,8 @@ public class QuizGUI extends JPanel {
     private JPanel questionPanel = new JPanel(new GridBagLayout());
     private JPanel answerPanel = new JPanel(new GridLayout(2, 0));
     private JLabel questionText = new JLabel("");
+    private JPanel namePanel = new JPanel();
+    private JLabel nameLabel = new JLabel();
     private JButton a1 = new JButton();
     private JButton a2 = new JButton();
     private JButton a3 = new JButton();
@@ -36,11 +38,12 @@ public class QuizGUI extends JPanel {
         a4.setBackground(Color.pink);
         a4.setForeground(Color.darkGray);
 
-
+        quizPanel.add(namePanel);
         quizPanel.add(questionPanel);
         questionPanel.add(questionText);
         questionPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         quizPanel.add(answerPanel);
+        namePanel.add(nameLabel);
         answerPanel.add(a1);
         answerPanel.add(a2);
         answerPanel.add(a3);
@@ -53,6 +56,9 @@ public class QuizGUI extends JPanel {
 
     }
 
+    public void setPlayerName(String name) {
+        this.nameLabel.setText(name);
+    }
 
     public void changeButtonsToDefaultColor() {
         a1.setBackground(Color.pink);
@@ -61,7 +67,6 @@ public class QuizGUI extends JPanel {
         a4.setBackground(Color.pink);
 
     }
-
 
     public JLabel getQuestionText() {
         return questionText;
