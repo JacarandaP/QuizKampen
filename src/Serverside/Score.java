@@ -70,19 +70,23 @@ public class Score implements Serializable {
         this.answer = answer;
     }
 
-    public void countRightAnswer(String answer){
+    public void countRightAnswer(String answer, String name){
 
+        if (name.equalsIgnoreCase("playerX")) {
+            if(playerX.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer)) {
+                System.out.println("X: " + playerX.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer));
+                scoreX ++;
 
-        if(playerX.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer))
-        {
-            System.out.println(playerX.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer));
-            scoreX ++;
-
-        }
-        if(playerY.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer)){
-            System.out.println(playerY.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer));
-            scoreY ++;
-
+            } else {
+                System.out.println("falseX");
+            }
+        } else if (name.equalsIgnoreCase("playerY")) {
+            if(playerY.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer)){
+                System.out.println("Y: " + playerY.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer));
+                scoreY ++;
+            } else {
+                System.out.println("falseY");
+            }
         }
 
 
