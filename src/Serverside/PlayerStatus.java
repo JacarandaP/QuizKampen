@@ -19,6 +19,15 @@ public class PlayerStatus implements Serializable {
     private List<Category> categoriesToSelectBetween;
     private Question questionToAnswer;
     private Integer currentQuestionIndex = null;
+    private int score;
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 
     public Integer getCurrentQuestionIndex() {
         return currentQuestionIndex;
@@ -105,8 +114,8 @@ public class PlayerStatus implements Serializable {
                 ", reasonForWaiting='" + reasonForWaiting + '\'' +
                 ", categoriesToSelectBetween=" + categoriesToSelectBetween +
                 ", questionToAnswer=" + questionToAnswer +
+                ", currentQuestionIndex=" + currentQuestionIndex +
+                ", score=" + score +
                 '}';
     }
-
-
 }

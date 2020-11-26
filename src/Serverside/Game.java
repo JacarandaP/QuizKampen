@@ -18,6 +18,8 @@ public class Game {
     private  List<Question> questionsInRound;
     private int currentRound = 1;
     private final int numberOfRounds;
+    private int counter;
+
 
 
     public Game() {
@@ -67,6 +69,7 @@ public class Game {
 
     public void answerSelected(Player player, String answer){
         int index = player.getPlayerStatus().getCurrentQuestionIndex();
+
         if (index == questionsInRound.size()-1 ) {
             Player otherPlayer = getOtherPlayer(player);
             if (otherPlayer.getPlayerStatus().isSelectingAnswer()) {
@@ -86,8 +89,6 @@ public class Game {
 
                     player.getPlayerStatus().setGameFinished(true);
                     otherPlayer.getPlayerStatus().setGameFinished(true);
-//                    player.getPlayerStatus().setWaiting(false);
-//                    otherPlayer.getPlayerStatus().setWaiting(false);
 
                 }
 
@@ -118,10 +119,6 @@ public class Game {
         playerY.getPlayerStatus().setSelectingCategory(true);
         playerY.getPlayerStatus().setRoundFinished(false);
         playerY.sendCurrentStatus();
-
-
-
-
     }
 
     public Player getOtherPlayer(Player player) {
@@ -132,6 +129,7 @@ public class Game {
         }
         throw new IllegalArgumentException("Unknown player");
     }
+
     public void startGame(){
         playerX.getPlayerStatus().setWaiting(false);
         playerX.getPlayerStatus().setCategoriesToSelectBetween(questionDatabase.getCategoryList());

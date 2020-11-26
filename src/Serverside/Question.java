@@ -2,6 +2,7 @@ package Serverside;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Question implements Serializable {
@@ -18,6 +19,7 @@ public class Question implements Serializable {
         answers.add(answer2);
         answers.add(answer3);
         answers.add(correctAnswer);
+        Collections.shuffle(answers);
     }
 
     public List<String> getAnswers() {

@@ -75,19 +75,13 @@ public class NewClient extends JFrame {
                         quizGUI.getA3().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(2));
                         quizGUI.getA4().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(3));
                         changeAnswersToDefaultColor();
+                        System.out.println("your score: " + playerStatusClient.getScore());
                     }
 
                     if (playerStatusClient.isRoundFinished()) {
                         c1.show(mainPanel, "3");
 
 
-                        //c1.show(mainPanel, "3");
-                        //System.out.println("round finished.Presh botton to continue ");
-                        /*if (s.hasNext() == true) {
-                            String answer = s.next();
-                            out.writeObject(answer);
-                        }*/
-                        ;
                     }
 
                     if (playerStatusClient.isGameFinished()) {
@@ -142,6 +136,7 @@ public class NewClient extends JFrame {
         String correctAnswer = playerStatusClient.getQuestionToAnswer().getCorrectAnswer();
         if (quizGUI.getA1().getText().equals(correctAnswer)) {
             quizGUI.getA1().setBackground(Color.green);
+
         } else {
             quizGUI.getA1().setBackground(Color.red);
         }
