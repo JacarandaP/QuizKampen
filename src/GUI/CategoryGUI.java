@@ -1,5 +1,6 @@
 package GUI;
 
+import Serverside.Category;
 import Serverside.Player;
 
 import javax.swing.*;
@@ -16,10 +17,10 @@ import java.awt.event.ActionListener;
 public class CategoryGUI extends JPanel {
 
     JLabel winnerLabel = new JLabel("Vinnare:");
-    JButton category1 = new JButton("Kultur");
-    JButton category2 = new JButton("Musik");
-    JButton category3 = new JButton("Sport");
-    JButton category4 = new JButton("Gaming");
+    JButton category1 = new JButton(Category.CULTURE.getCategoryName());
+    JButton category2 = new JButton(Category.MUSIC.getCategoryName());
+    JButton category3 = new JButton(Category.SPORTS.getCategoryName());
+    JButton category4 = new JButton(Category.GAMING.getCategoryName());
     private JPanel gamePanel = new JPanel();
     private JPanel statusPanel = new JPanel();
     private JPanel categoryPanel = new JPanel(new BorderLayout());
