@@ -18,8 +18,7 @@ public class Game {
     private  List<Question> questionsInRound;
     private int currentRound = 1;
     private final int numberOfRounds;
-    private int scoreX;
-    private int scoreY;
+
 
 
 
@@ -67,11 +66,10 @@ public class Game {
         playerY.sendCurrentStatus();
     }
 
-    //Ska kanske även implementera den framtida metoden isRightAnswer
 
     public void answerSelected(Player player, String answer){
+        countRightAnswer(answer, player);
         int index = player.getPlayerStatus().getCurrentQuestionIndex();
-
         if (index == questionsInRound.size()-1 ) {
             Player otherPlayer = getOtherPlayer(player);
             if (otherPlayer.getPlayerStatus().isSelectingAnswer()) {
@@ -143,30 +141,18 @@ public class Game {
         playerY.sendCurrentStatus();
     }
     public void countRightAnswer(String answer, Player player) {
-        if (playerX.equals(player)) {
+        if (player.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer)) {
+                System.out.println(player.getUserName() + player.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer));
+                player.getPlayerStatus().incrementScore();
 
-            if (player.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer)) {
-                System.out.println("X:" + player.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer));
-                scoreX++;
             } else {
-                System.out.println("wrong answer player X");
-            }
-        } else if (playerY.equals(player)) {
-
-            if (player.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer)) {
-                System.out.println("Y:" + player.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer));
-                scoreY++;
-            } else {
-                System.out.println("wrong answer player Y");
+                System.out.println(player.getUserName() + " wrong answer");
             }
 
-        }
+
+
     }
 
-    public String returnNameScore() {
-        return playerX.getUserName() + " Score: " + scoreX + "\n" +
-                playerY.getUserName() + " Score: " + scoreY;
-    }
 }
 
 

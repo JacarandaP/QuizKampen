@@ -86,7 +86,7 @@ public class Player extends Thread implements Serializable {
 
                             Thread.sleep(2000);
                             game.answerSelected(this, (String) fromClient);
-                            game.countRightAnswer((String) fromClient, this);
+
 
 
                         } catch (InterruptedException e) {
@@ -97,7 +97,6 @@ public class Player extends Thread implements Serializable {
                 }
 
                else if(playerStatus.isRoundFinished() && !playerStatus.isGameFinished()) {
-                    System.out.println("This score" + game.returnNameScore());
                    game.playNexRound();
                }
 

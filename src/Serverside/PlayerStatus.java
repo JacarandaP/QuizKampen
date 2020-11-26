@@ -102,6 +102,10 @@ public class PlayerStatus implements Serializable {
         this.questionToAnswer = questionToAnswer;
     }
 
+    public void incrementScore(){
+        score++;
+    }
+
 
     @Override
     public String toString() {
