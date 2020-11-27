@@ -4,6 +4,7 @@ package Serverside;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SplittableRandom;
 
 public class PlayerStatus implements Serializable {
 
@@ -21,6 +22,15 @@ public class PlayerStatus implements Serializable {
     private Integer currentQuestionIndex = null;
     private int yourScore;
     private int yourOpponentsScore;
+    private String playerName;
+
+
+    public void setPlayerName(String playerName){
+        this.playerName = playerName;
+    }
+    public String getPlayerName(){
+        return playerName;
+    }
 
     public void setYourOpponentsScore(int opponentsScore){
         this.yourOpponentsScore = opponentsScore;
@@ -129,6 +139,7 @@ public class PlayerStatus implements Serializable {
                 ", currentQuestionIndex=" + currentQuestionIndex +
                 ", yourScore=" + yourScore +
                 ", yourOpponentsScore=" + yourOpponentsScore +
+                ", playerName='" + playerName + '\'' +
                 '}';
     }
 }

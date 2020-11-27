@@ -19,10 +19,6 @@ public class Game {
     private int currentRound = 1;
     private final int numberOfRounds;
 
-
-
-
-
     public Game() {
 
         questionDatabase = new QuestionDatabase();
@@ -37,7 +33,6 @@ public class Game {
         return questionsOfChosenCategory.stream().limit(numberOfQuestions).collect(Collectors.toList());
     }
 
-
     public void playerIsConnected(Player player){
         if(playerX == null) {
             playerX = player;
@@ -49,6 +44,16 @@ public class Game {
          else
              throw new IllegalStateException("Only two players allowed");
     }
+
+    public void giveName(Player player){
+        if(playerX.equals(player)) {
+            player.getPlayerStatus().setPlayerName("Player X");
+        }
+        else if (playerY.equals(player)){
+            player.getPlayerStatus().setPlayerName("Player Y");
+        }
+    }
+
 
     public void categorySelected(Category category){
         questionsInRound = getQuestions(category);
@@ -153,13 +158,7 @@ public class Game {
             }
     }
 
-   /* public void setOpponentScore(Player player){
-        Player otherPlayer = getOtherPlayer(player);
-        player.getPlayerStatus().setYourOpponentsScore(otherPlayer.getPlayerStatus().getScore());
 
-
-
-    }*/
 }
 
 

@@ -66,6 +66,7 @@ public class Player extends Thread implements Serializable {
         {
             game.playerIsConnected(this);
             out.writeObject(getUserName() + " is connected");
+            game.giveName(this);
 
             Object fromClient;
 
