@@ -111,15 +111,26 @@ public class Game {
 
     public void playNexRound(){
         currentRound ++;
+
+        boolean flag = true;
+        if (currentRound % 2 == 0 ) {
+        } else {
+            flag = false;
+        }
+
         playerX.getPlayerStatus().setSelectingAnswer(false);
         playerY.getPlayerStatus().setSelectingAnswer(false);
-        playerX.getPlayerStatus().setWaiting(true);
+        playerX.getPlayerStatus().setWaiting(flag);
+        //playerX.getPlayerStatus().setCategoriesToSelectBetween(questionDatabase.getCategoryList());
+        playerX.getPlayerStatus().setSelectingCategory(!flag);
+
         playerX.getPlayerStatus().setReasonForWaiting("Waiting for other player to select a category");
         playerX.getPlayerStatus().setRoundFinished(false);
         playerX.sendCurrentStatus();
-        playerY.getPlayerStatus().setWaiting(false);
-        playerY.getPlayerStatus().setCategoriesToSelectBetween(questionDatabase.getCategoryList());
-        playerY.getPlayerStatus().setSelectingCategory(true);
+
+        playerY.getPlayerStatus().setWaiting(!flag);
+        //playerY.getPlayerStatus().setCategoriesToSelectBetween(questionDatabase.getCategoryList());
+        playerY.getPlayerStatus().setSelectingCategory(flag);
         playerY.getPlayerStatus().setRoundFinished(false);
         playerY.sendCurrentStatus();
     }
