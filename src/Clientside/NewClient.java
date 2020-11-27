@@ -98,6 +98,7 @@ public class NewClient extends JFrame {
                                 ". Your opponent's final score: " + playerStatusClient.getYourOpponentsScore());
                         c1.show(mainPanel, "4");
                         resGUI.setNamesAndScore(playerStatusClient.getPlayerName(), playerStatusClient.getScore(), playerStatusClient.getOpponentsName(), playerStatusClient.getYourOpponentsScore());
+                        resGUI.setWinner(playerStatusClient.getPlayerName(),playerStatusClient.getOpponentsName());
                         Thread.sleep(6000);
 
                         // Call ResultGUI class.

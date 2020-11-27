@@ -17,7 +17,7 @@ public class PropertyReader {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        numberOfRounds = Integer.parseInt(p.getProperty("roundsInput", "3"));
+        numberOfRounds = Integer.parseInt(p.getProperty("roundsInput", "2"));
         numberOfQuestions = Integer.parseInt(p.getProperty("questionsInput", "2"));
     }
 

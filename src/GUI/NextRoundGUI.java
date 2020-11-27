@@ -34,9 +34,9 @@ public class NextRoundGUI extends JPanel {
         return continueButton;
     }
     public void setNamesAndScore(String pxName, int pxScore, String pyName, int pyScore) {
-        playersResult.setText("<html>" + pxName + ": your score in this round: "
+        playersResult.setText("<html>" + pxName + " Score: "
                 + pxScore + "<br/>" +
-                "Your opponent's score in this round: " + pyScore + "</html>");
+                pyName +  " Score: " + pyScore + "</html>");
 
     }
 

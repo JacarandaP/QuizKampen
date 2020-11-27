@@ -12,13 +12,11 @@ import java.awt.*;
  */
 public class ResultGUI extends JPanel {
 
-    int player1Score;
-    int player2Score;
-    String player1Name;
-    String Player2Name;
+    private int pxResult;
+    private int pyResult;
     JLabel playersResult = new JLabel();
 
-    private JLabel resultText = new JLabel("The winner is: XXXXX");
+    private JLabel resultText = new JLabel();
     private JPanel scorePanel = new JPanel(new BorderLayout());
     private JPanel centerPanel = new JPanel(new GridLayout(2,0));
 
@@ -35,10 +33,23 @@ public class ResultGUI extends JPanel {
 
 
     public void setNamesAndScore(String pxName, int pxScore, String pyName, int pyScore) {
-        playersResult.setText("<html> <div style='text-align: center;/>" + pxName + ": your score in this round: "
+        playersResult.setText("<html>" + pxName + " Total Score: "
                 + pxScore + "<br/>" +
-                "Your opponent's score in this round: " + pyScore + "</html>");
+                pyName +  " Total Score: " + pyScore + "</html>");
 
+        pxResult = pxScore;
+        pyResult = pyScore;
+
+    }
+
+    public void setWinner(String px, String py) {
+        if (pxResult > pyResult) {
+            resultText.setText(px + " won!!!");
+        } else if (pyResult > pxResult) {
+            resultText.setText(py + " won!!!");
+        } else {
+            resultText.setText("It's a tie!!!");
+        }
     }
 
 }
