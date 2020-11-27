@@ -17,21 +17,47 @@ public class PlayerStatus implements Serializable {
     private boolean waiting;
     private String reasonForWaiting;
 
-    private String playerName;
-
     private List<Category> categoriesToSelectBetween;
     private Question questionToAnswer;
     private Integer currentQuestionIndex = null;
     private int yourScore;
     private int yourOpponentsScore;
+    private String playerName;
+    private String opponentsName;
 
 
+    @Override
+    public String toString() {
+        return "PlayerStatus{" +
+                "selectingCategory=" + selectingCategory +
+                ", selectingAnswer=" + selectingAnswer +
+                ", roundFinished=" + roundFinished +
+                ", gameFinished=" + gameFinished +
+                ", waiting=" + waiting +
+                ", reasonForWaiting='" + reasonForWaiting + '\'' +
+                ", categoriesToSelectBetween=" + categoriesToSelectBetween +
+                ", questionToAnswer=" + questionToAnswer +
+                ", currentQuestionIndex=" + currentQuestionIndex +
+                ", yourScore=" + yourScore +
+                ", yourOpponentsScore=" + yourOpponentsScore +
+                ", playerName='" + playerName + '\'' +
+                ", opponentsName='" + opponentsName + '\'' +
+                '}';
+    }
 
     public void setPlayerName(String playerName){
         this.playerName = playerName;
     }
     public String getPlayerName(){
         return playerName;
+    }
+
+    public void setOpponentsName(String opponentsName){
+        this.opponentsName = opponentsName;
+    }
+
+    public String getOpponentsName(){
+        return opponentsName;
     }
 
     public void setYourOpponentsScore(int opponentsScore){
@@ -140,21 +166,4 @@ public class PlayerStatus implements Serializable {
     }
 
 
-    @Override
-    public String toString() {
-        return "PlayerStatus{" +
-                "selectingCategory=" + selectingCategory +
-                ", selectingAnswer=" + selectingAnswer +
-                ", roundFinished=" + roundFinished +
-                ", gameFinished=" + gameFinished +
-                ", waiting=" + waiting +
-                ", reasonForWaiting='" + reasonForWaiting + '\'' +
-                ", categoriesToSelectBetween=" + categoriesToSelectBetween +
-                ", questionToAnswer=" + questionToAnswer +
-                ", currentQuestionIndex=" + currentQuestionIndex +
-                ", yourScore=" + yourScore +
-                ", yourOpponentsScore=" + yourOpponentsScore +
-                ", playerName='" + playerName + '\'' +
-                '}';
-    }
 }

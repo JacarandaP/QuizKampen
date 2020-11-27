@@ -92,6 +92,8 @@ public class Game {
                 otherPlayer.getPlayerStatus().setWaiting(false);
                 player.getPlayerStatus().setYourOpponentsScore(otherPlayer.getPlayerStatus().getScore());
                 otherPlayer.getPlayerStatus().setYourOpponentsScore(player.getPlayerStatus().getScore());
+                player.getPlayerStatus().setOpponentsName(otherPlayer.getPlayerStatus().getPlayerName() );
+                otherPlayer.getPlayerStatus().setOpponentsName(player.getPlayerStatus().getPlayerName());
 
                 if(currentRound == numberOfRounds) {
 
@@ -169,8 +171,19 @@ public class Game {
             }
     }
 
+    public String giveOpponentsName (Player player){
+            if(player.equals(playerX)){
+                return playerY.getUserName();
+            }
+            else if(player.equals(playerY)){
+                return playerX.getUserName();
+            }
 
-}
+            return "Unknown player";
+        }
+    }
+
+
 
 
 

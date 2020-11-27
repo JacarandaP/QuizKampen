@@ -87,18 +87,19 @@ public class NewClient extends JFrame {
 //                        System.out.println("your score in this round: " + playerStatusClient.getScore());
 //                        System.out.println("round finished.Presh botton to continue ");
 
-                        nextRoundGUI.setNamesAndScore(playerStatusClient.getPlayerName(),playerStatusClient.getScore(),"egg",playerStatusClient.getYourOpponentsScore());
+                        nextRoundGUI.setNamesAndScore(playerStatusClient.getPlayerName(), playerStatusClient.getScore(), playerStatusClient.getOpponentsName(), playerStatusClient.getYourOpponentsScore());
 
 
                     }
 
                     if (playerStatusClient.isGameFinished()) {
-                        System.out.println("Game is finished." +  playerStatusClient.getPlayerName() + ": your final score: "
+                        System.out.println("Game is finished." + playerStatusClient.getPlayerName() + ": your final score: "
                                 + playerStatusClient.getScore() +
                                 ". Your opponent's final score: " + playerStatusClient.getYourOpponentsScore());
-                        c1.show(mainPanel,"4");
-                        resGUI.setNamesAndScore(playerStatusClient.getPlayerName(),playerStatusClient.getScore(),"egg",playerStatusClient.getYourOpponentsScore());
+                        c1.show(mainPanel, "4");
+                        resGUI.setNamesAndScore(playerStatusClient.getPlayerName(), playerStatusClient.getScore(), playerStatusClient.getOpponentsName(), playerStatusClient.getYourOpponentsScore());
                         Thread.sleep(6000);
+
                         // Call ResultGUI class.
                     }
                 }
