@@ -1,5 +1,6 @@
 package GUI;
 
+import Serverside.Category;
 import Serverside.Player;
 
 import javax.swing.*;
@@ -16,10 +17,10 @@ import java.awt.event.ActionListener;
 public class CategoryGUI extends JPanel {
 
     JLabel winnerLabel = new JLabel("Vinnare:");
-    JButton category1 = new JButton("Kultur");
-    JButton category2 = new JButton("Musik");
-    JButton category3 = new JButton("Sport");
-    JButton category4 = new JButton("Gaming");
+    JButton category1 = new JButton(Category.CULTURE.getCategoryName());
+    JButton category2 = new JButton(Category.MUSIC.getCategoryName());
+    JButton category3 = new JButton(Category.SPORTS.getCategoryName());
+    JButton category4 = new JButton(Category.GAMING.getCategoryName());
     private JPanel gamePanel = new JPanel();
     private JPanel statusPanel = new JPanel();
     private JPanel categoryPanel = new JPanel(new BorderLayout());
@@ -38,19 +39,14 @@ public class CategoryGUI extends JPanel {
         category4.setBackground(Color.lightGray);
         gamePanel.add(category1);
 
-
-
         category2.setEnabled(true);
         gamePanel.add(category2);
-
 
         category3.setEnabled(true);
         gamePanel.add(category3);
 
-
         category4.setEnabled(true);
         gamePanel.add(category4);
-
 
         statusPanel.add(winnerLabel);
 
@@ -64,11 +60,9 @@ public class CategoryGUI extends JPanel {
         add(categoryPanel);
     }
 
-
-
-
-
-
+    public void setPlayerName(String name) {
+        this.nameLabel.setText(name);
+    }
 
     public JButton getCategory1() {
         return category1;

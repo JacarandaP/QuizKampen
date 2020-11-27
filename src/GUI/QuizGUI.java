@@ -14,19 +14,21 @@ import java.awt.event.ActionListener;
  * Class: Java20B
  */
 public class QuizGUI extends JPanel {
-    private JPanel quizPanel = new JPanel(new GridLayout(2, 0));
+    private JPanel quizPanel = new JPanel(new GridLayout(3, 0));
     private JPanel questionPanel = new JPanel(new GridBagLayout());
     private JPanel answerPanel = new JPanel(new GridLayout(2, 0));
     private JLabel questionText = new JLabel("");
+    private JPanel namePanel = new JPanel();
+    private JLabel nameLabel = new JLabel();
     private JButton a1 = new JButton();
     private JButton a2 = new JButton();
     private JButton a3 = new JButton();
     private JButton a4 = new JButton();
 
     public QuizGUI() {
-        quizPanel.setBackground(Color.blue);
-        questionPanel.setBackground(Color.white);
-        answerPanel.setBackground(Color.yellow);
+//        quizPanel.setBackground(Color.blue);
+//        questionPanel.setBackground(Color.white);
+//        answerPanel.setBackground(Color.yellow);
         a1.setBackground(Color.pink);
         a1.setForeground(Color.darkGray);
         a2.setBackground(Color.pink);
@@ -52,6 +54,10 @@ public class QuizGUI extends JPanel {
 
 
     }
+    public void setPlayerName(String name) {
+        this.nameLabel.setText(name);
+    }
+
 
 
     public void changeButtonsToDefaultColor() {

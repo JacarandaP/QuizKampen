@@ -27,6 +27,7 @@ public class Player extends Thread implements Serializable {
         this.game = game;
         String welcomeMessage = "Waiting for both players to connect";
         playerStatus = new PlayerStatus();
+        playerStatus.setPlayerName(this.name);
         playerStatus.setWaiting(true);
 
 

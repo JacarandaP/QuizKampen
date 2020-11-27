@@ -38,6 +38,7 @@ public class NewClient extends JFrame {
     private CardLayout c1 = new CardLayout();
     private String answer;
     private PlayerStatus playerStatusClient;
+    private int counter = 0;
 
 
     public NewClient() throws IOException {
@@ -57,6 +58,9 @@ public class NewClient extends JFrame {
             while ((fromServer = in.readObject()) != null) {
                 if (fromServer instanceof PlayerStatus) {
                     playerStatusClient = (PlayerStatus) fromServer;
+                    quizGUI.setPlayerName(playerStatusClient.getPlayerName());
+                    catGUI.setPlayerName(playerStatusClient.getPlayerName());
+                    nextRoundGUI.setPlayerNames(playerStatusClient.getPlayerName(), playerStatusClient.getPlayerName()); //
                     if (playerStatusClient.isSelectingCategory() == true) {
                         System.out.println(playerStatusClient.getCategoriesToSelectBetween());
 //                        catGUI.getCategory1().setText();
@@ -83,6 +87,8 @@ public class NewClient extends JFrame {
                         System.out.println(playerStatusClient.getPlayerName() + ": your score in this round: "
                                 + playerStatusClient.getScore() +
                                 ". Your opponent's score in this round: " + playerStatusClient.getYourOpponentsScore());
+//                        System.out.println("your score in this round: " + playerStatusClient.getScore());
+//                        System.out.println("round finished.Presh botton to continue ");
 
 
                     }

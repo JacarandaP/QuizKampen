@@ -17,12 +17,14 @@ public class PlayerStatus implements Serializable {
     private boolean waiting;
     private String reasonForWaiting;
 
+    private String playerName;
+
     private List<Category> categoriesToSelectBetween;
     private Question questionToAnswer;
     private Integer currentQuestionIndex = null;
     private int yourScore;
     private int yourOpponentsScore;
-    private String playerName;
+
 
 
     public void setPlayerName(String playerName){
@@ -46,6 +48,10 @@ public class PlayerStatus implements Serializable {
     public void setScore(int score) {
         this.yourScore= score;
     }
+
+    private Player player;
+
+    private int score;
 
     public Integer getCurrentQuestionIndex() {
         return currentQuestionIndex;
@@ -120,8 +126,17 @@ public class PlayerStatus implements Serializable {
         this.questionToAnswer = questionToAnswer;
     }
 
+
     public void incrementScore(){
         yourScore++;
+//=======
+//    public String getPlayerName() {
+//        return playerName;
+//    }
+//
+//    public void setPlayerName(String name) {
+//        playerName = name;
+//>>>>>>> FeatureWinnerGUIAndNameImplementation
     }
 
 
