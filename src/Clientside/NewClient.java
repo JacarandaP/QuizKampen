@@ -81,16 +81,16 @@ public class NewClient extends JFrame {
                     if (playerStatusClient.isRoundFinished()) {
                         c1.show(mainPanel, "3");
                         System.out.println(playerStatusClient.getPlayerName() + ": your score in this round: "
-                                + playerStatusClient.getScore() +
-                                ". Your opponent's score in this round: " + playerStatusClient.getYourOpponentsScore());
+                                + playerStatusClient.getScore() + ". " +
+                                playerStatusClient.getOpponentsName()  + " score in this round: " + playerStatusClient.getYourOpponentsScore());
 
 
                     }
 
                     if (playerStatusClient.isGameFinished()) {
                         System.out.println("Game is finished." +  playerStatusClient.getPlayerName() + ": your final score: "
-                                + playerStatusClient.getScore() +
-                                ". Your opponent's final score: " + playerStatusClient.getYourOpponentsScore());
+                                + playerStatusClient.getScore() + ". " +
+                                playerStatusClient.getOpponentsName() +" final score: " + playerStatusClient.getYourOpponentsScore());
 
                         // Call ResultGUI class.
                     }
