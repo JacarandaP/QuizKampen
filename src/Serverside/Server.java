@@ -10,9 +10,15 @@ public class Server {
     public Server() {
         System.out.println("Server started");
 
-        try(ServerSocket serverSocket = new ServerSocket(port)) {
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
             while (true) {
-                new ClientHandler(serverSocket.accept()).start();
+
+                Game game = new Game();
+                Player playerX = new Player(serverSocket.accept(), "PlayerX", game);
+                playerX.start();
+                Player playerY = new Player(serverSocket.accept(), "PlayerY", game);
+                playerY.start();
+
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -20,6 +26,7 @@ public class Server {
     }
 
     public static void main(String[] args) {
-        Server server= new Server();
+        Server server = new Server();
+
     }
 }

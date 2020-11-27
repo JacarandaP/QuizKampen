@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding ="UTF 8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.dtd/properties.dtd>
+
+<properties>
+<comment>Sets number of Rounds and number of Questions</comment>
+<entry key="roundsInput">2</entry>
+<entry key="questionsInput">2</entry>
+</properties>
