@@ -1,9 +1,6 @@
 package Clientside;
 
-import GUI.CategoryGUI;
-import GUI.NextRoundGUI;
-import GUI.QuizGUI;
-import GUI.WaitingGUI;
+import GUI.*;
 import Serverside.Category;
 import Serverside.PlayerStatus;
 import Serverside.Question;
@@ -33,7 +30,8 @@ public class NewClient extends JFrame {
     private CategoryGUI catGUI = new CategoryGUI();
     private QuizGUI quizGUI = new QuizGUI();
     private WaitingGUI waitGUI = new WaitingGUI("Waiting...");
-    private NextRoundGUI nextRoundGUI = new NextRoundGUI("Play next round: ");
+    private NextRoundGUI nextRoundGUI = new NextRoundGUI();
+    private ResultGUI resGUI = new ResultGUI();
     private JPanel mainPanel = new JPanel();
     private CardLayout c1 = new CardLayout();
     private String answer;
@@ -60,7 +58,6 @@ public class NewClient extends JFrame {
                     playerStatusClient = (PlayerStatus) fromServer;
                     quizGUI.setPlayerName(playerStatusClient.getPlayerName());
                     catGUI.setPlayerName(playerStatusClient.getPlayerName());
-                    nextRoundGUI.setPlayerNames(playerStatusClient.getPlayerName(), playerStatusClient.getPlayerName()); //
                     if (playerStatusClient.isSelectingCategory() == true) {
                         System.out.println(playerStatusClient.getCategoriesToSelectBetween());
 //                        catGUI.getCategory1().setText();
@@ -90,6 +87,8 @@ public class NewClient extends JFrame {
 //                        System.out.println("your score in this round: " + playerStatusClient.getScore());
 //                        System.out.println("round finished.Presh botton to continue ");
 
+                        nextRoundGUI.setNamesAndScore(playerStatusClient.getPlayerName(),playerStatusClient.getScore(),"egg",playerStatusClient.getYourOpponentsScore());
+
 
                     }
 
@@ -97,7 +96,9 @@ public class NewClient extends JFrame {
                         System.out.println("Game is finished." +  playerStatusClient.getPlayerName() + ": your final score: "
                                 + playerStatusClient.getScore() +
                                 ". Your opponent's final score: " + playerStatusClient.getYourOpponentsScore());
-
+                        c1.show(mainPanel,"4");
+                        resGUI.setNamesAndScore(playerStatusClient.getPlayerName(),playerStatusClient.getScore(),"egg",playerStatusClient.getYourOpponentsScore());
+                        Thread.sleep(6000);
                         // Call ResultGUI class.
                     }
                 }
@@ -121,6 +122,7 @@ public class NewClient extends JFrame {
         mainPanel.add(quizGUI, "1");
         mainPanel.add(waitGUI, "2");
         mainPanel.add(nextRoundGUI, "3");
+        mainPanel.add(resGUI, "4");
         add(mainPanel);
     }
 

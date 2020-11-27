@@ -11,38 +11,37 @@ import java.awt.*;
  */
 public class NextRoundGUI extends JPanel {
 
-    private JLabel txt = new JLabel();
-    private JPanel waitingPanel = new JPanel(new GridBagLayout());
+
+    private JPanel waitingPanel = new JPanel(new BorderLayout());
     private JButton continueButton = new JButton("Continue");
+    private JLabel playersResult = new JLabel();
+    private JPanel resultPanel = new JPanel();
 
-    private int scorePlayerX;
-    private int scorePlayerY;
+    public NextRoundGUI()  {
 
-    private JLabel playerXName = new JLabel();
-    private JLabel playerYName = new JLabel();
-
-    public NextRoundGUI(String text)  {
-
-        txt.setText(text);
+        resultPanel.add(playersResult);
+        resultPanel.setPreferredSize(new Dimension(100,100));
+        resultPanel.setBackground(Color.CYAN);
         waitingPanel.setPreferredSize(new Dimension(500,500));
-        waitingPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        waitingPanel.add(txt);
-        waitingPanel.add(continueButton);
+        waitingPanel.add(continueButton, BorderLayout.SOUTH);
         //playerXName.setText(playerX);
         //playerYName.setText(playerY);
-        waitingPanel.add(playerXName);
-        waitingPanel.add(playerYName);
+        waitingPanel.add(resultPanel, BorderLayout.CENTER);
         add(waitingPanel);
     }
 
     public JButton getContinueButton() {
         return continueButton;
     }
+    public void setNamesAndScore(String pxName, int pxScore, String pyName, int pyScore) {
+        playersResult.setText("<html>" + pxName + ": your score in this round: "
+                + pxScore + "<br/>" +
+                "Your opponent's score in this round: " + pyScore + "</html>");
 
-    public void setPlayerNames(String playerX, String playerY) {
-        this.playerXName.setText(playerX);
-        this.playerYName.setText(playerY);
     }
+
+
+
 
 
 }

@@ -39,6 +39,8 @@ public class QuizGUI extends JPanel {
         a4.setForeground(Color.darkGray);
 
 
+        namePanel.add(nameLabel);
+        quizPanel.add(namePanel);
         quizPanel.add(questionPanel);
         questionPanel.add(questionText);
         questionPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -55,7 +57,7 @@ public class QuizGUI extends JPanel {
 
     }
     public void setPlayerName(String name) {
-        this.nameLabel.setText(name);
+       this.nameLabel.setText(name);
     }
 
 
