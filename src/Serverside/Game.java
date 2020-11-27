@@ -47,10 +47,10 @@ public class Game {
 
     public void giveName(Player player){
         if(playerX.equals(player)) {
-            player.getPlayerStatus().setPlayerName("Player X");
+            player.getPlayerStatus().setPlayerName(player.getUserName());
         }
         else if (playerY.equals(player)){
-            player.getPlayerStatus().setPlayerName("Player Y");
+            player.getPlayerStatus().setPlayerName(player.getUserName());
         }
     }
 
