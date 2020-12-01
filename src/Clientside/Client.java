@@ -21,7 +21,7 @@ public class Client extends JFrame {
     ObjectOutputStream out = new ObjectOutputStream(socketToServer.getOutputStream());
     private CategoryGUI catGUI = new CategoryGUI();
     private QuizGUI quizGUI = new QuizGUI();
-    private WaitingGUI waitGUI = new WaitingGUI("Waiting...");
+    private WaitingGUI waitGUI = new WaitingGUI("Väntar på motståndaren...");
     private NextRoundGUI nextRoundGUI = new NextRoundGUI();
     private ResultGUI resGUI = new ResultGUI();
     private JPanel mainPanel = new JPanel();

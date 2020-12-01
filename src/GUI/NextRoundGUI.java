@@ -6,7 +6,7 @@ import java.awt.*;
 public class NextRoundGUI extends JPanel {
 
     private JPanel waitingPanel = new JPanel(new BorderLayout());
-    private JButton continueButton = new JButton("Continue");
+    private JButton continueButton = new JButton("Spela nästa runda");
     private JLabel playersResult = new JLabel();
     private JPanel resultPanel = new JPanel();
 
@@ -24,9 +24,9 @@ public class NextRoundGUI extends JPanel {
     }
 
     public void setNamesAndScore(String pxName, int pxScore, String pyName, int pyScore) {
-        playersResult.setText("<html>" + pxName + " Score: "
+        playersResult.setText("<html>" + pxName + " - Poäng: "
                 + pxScore + "<br/>" +
-                pyName + " Score: " + pyScore + "</html>");
+                pyName + " - Poäng: " + pyScore + "</html>");
 
     }
 }
