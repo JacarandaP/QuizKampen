@@ -38,10 +38,6 @@ public class Question implements Serializable {
         return questionText;
     }
 
-    public Category getCategory()
-    {return this.category;}
-
-
     @Override
     public String toString() {
         return "Question{" +
