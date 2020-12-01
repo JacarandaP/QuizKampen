@@ -71,10 +71,6 @@ public class PlayerStatus implements Serializable {
         return yourScore;
     }
 
-//    public void setScore(int score) {
-//        this.yourScore = score;
-//    }
-
     public Integer getCurrentQuestionIndex() {
         return currentQuestionIndex;
     }
@@ -94,10 +90,6 @@ public class PlayerStatus implements Serializable {
 
     public void setReasonForWaiting(String reasonForWaiting) {
         this.reasonForWaiting = reasonForWaiting;
-    }
-
-    public String getReasonForWaiting() {
-        return reasonForWaiting;
     }
 
     public boolean isSelectingCategory() {

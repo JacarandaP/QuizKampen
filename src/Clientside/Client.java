@@ -110,7 +110,6 @@ public class Client extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
-
     public void pressAnswersColorInteraction() {
         String correctAnswer = playerStatusClient.getQuestionToAnswer().getCorrectAnswer();
         if (quizGUI.getA1().getText().equals(correctAnswer)) {
@@ -138,14 +137,6 @@ public class Client extends JFrame {
             quizGUI.getA4().setBackground(Color.red);
         }
     }
-
-//    public void changeAnswersToDefaultColor() {
-//        quizGUI.getA1().setBackground(Color.pink);
-//        quizGUI.getA2().setBackground(Color.pink);
-//        quizGUI.getA3().setBackground(Color.pink);
-//        quizGUI.getA4().setBackground(Color.pink);
-//
-//    }
 
     private class ButtonListener implements ActionListener {
 
