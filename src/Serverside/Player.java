@@ -2,8 +2,6 @@ package Serverside;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * Created by Max Erling
@@ -99,7 +97,7 @@ public class Player extends Thread implements Serializable {
                 }
 
                else if(playerStatus.isRoundFinished() && !playerStatus.isGameFinished()) {
-                   game.playNexRound();
+                   game.playNextRound();
                }
 
             }
