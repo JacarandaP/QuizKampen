@@ -1,6 +1,5 @@
 package Serverside;
 
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +24,6 @@ public class PlayerStatus implements Serializable {
     private String playerName;
     private String opponentsName;
 
-
     @Override
     public String toString() {
         return "PlayerStatus{" +
@@ -45,39 +43,37 @@ public class PlayerStatus implements Serializable {
                 '}';
     }
 
-    public void setPlayerName(String playerName){
+    public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
-    public String getPlayerName(){
+
+    public String getPlayerName() {
         return playerName;
     }
 
-    public void setOpponentsName(String opponentsName){
+    public void setOpponentsName(String opponentsName) {
         this.opponentsName = opponentsName;
     }
 
-    public String getOpponentsName(){
+    public String getOpponentsName() {
         return opponentsName;
     }
 
-    public void setYourOpponentsScore(int opponentsScore){
+    public void setYourOpponentsScore(int opponentsScore) {
         this.yourOpponentsScore = opponentsScore;
     }
 
-    public int getYourOpponentsScore(){
+    public int getYourOpponentsScore() {
         return yourOpponentsScore;
     }
+
     public int getScore() {
         return yourScore;
     }
 
-    public void setScore(int score) {
-        this.yourScore= score;
-    }
-
-    private Player player;
-
-    private int score;
+//    public void setScore(int score) {
+//        this.yourScore = score;
+//    }
 
     public Integer getCurrentQuestionIndex() {
         return currentQuestionIndex;
@@ -96,11 +92,11 @@ public class PlayerStatus implements Serializable {
     }
 
 
-    public void setReasonForWaiting(String reasonForWaiting){
+    public void setReasonForWaiting(String reasonForWaiting) {
         this.reasonForWaiting = reasonForWaiting;
     }
 
-    public String getReasonForWaiting(){
+    public String getReasonForWaiting() {
         return reasonForWaiting;
     }
 
@@ -153,17 +149,7 @@ public class PlayerStatus implements Serializable {
     }
 
 
-    public void incrementScore(){
+    public void incrementScore() {
         yourScore++;
-//=======
-//    public String getPlayerName() {
-//        return playerName;
-//    }
-//
-//    public void setPlayerName(String name) {
-//        playerName = name;
-//>>>>>>> FeatureWinnerGUIAndNameImplementation
     }
-
-
 }
