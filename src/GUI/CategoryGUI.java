@@ -8,15 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-/**
- * Created by Max Erling
- * Date: 2020-11-17
- * Copyright: MIT
- * Class: Java20B
- */
 public class CategoryGUI extends JPanel {
 
-    JLabel winnerLabel = new JLabel("Vinnare:");
     JButton category1 = new JButton(Category.CULTURE.getCategoryName());
     JButton category2 = new JButton(Category.MUSIC.getCategoryName());
     JButton category3 = new JButton(Category.SPORTS.getCategoryName());
@@ -27,29 +20,16 @@ public class CategoryGUI extends JPanel {
     JPanel namePanel = new JPanel();
     JLabel nameLabel = new JLabel("Kategori: ");
 
-
-
-
     public CategoryGUI() {
         gamePanel.setLayout(new GridLayout(2,2));
-        category1.setEnabled(true);
         category1.setBackground(Color.lightGray);
         category2.setBackground(Color.lightGray);
         category3.setBackground(Color.lightGray);
         category4.setBackground(Color.lightGray);
         gamePanel.add(category1);
-
-        category2.setEnabled(true);
         gamePanel.add(category2);
-
-        category3.setEnabled(true);
         gamePanel.add(category3);
-
-        category4.setEnabled(true);
         gamePanel.add(category4);
-
-        statusPanel.add(winnerLabel);
-
         namePanel.setBackground(Color.PINK);
         namePanel.add(nameLabel);
 
