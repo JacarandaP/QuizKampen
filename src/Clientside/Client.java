@@ -57,7 +57,7 @@ public class Client extends JFrame {
                         quizGUI.getA2().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(1));
                         quizGUI.getA3().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(2));
                         quizGUI.getA4().setText(playerStatusClient.getQuestionToAnswer().getAnswers().get(3));
-                        changeAnswersToDefaultColor();
+                        quizGUI.changeButtonsToDefaultColor();
 
                     }
 
@@ -139,13 +139,13 @@ public class Client extends JFrame {
         }
     }
 
-    public void changeAnswersToDefaultColor() {
-        quizGUI.getA1().setBackground(Color.pink);
-        quizGUI.getA2().setBackground(Color.pink);
-        quizGUI.getA3().setBackground(Color.pink);
-        quizGUI.getA4().setBackground(Color.pink);
-
-    }
+//    public void changeAnswersToDefaultColor() {
+//        quizGUI.getA1().setBackground(Color.pink);
+//        quizGUI.getA2().setBackground(Color.pink);
+//        quizGUI.getA3().setBackground(Color.pink);
+//        quizGUI.getA4().setBackground(Color.pink);
+//
+//    }
 
     private class ButtonListener implements ActionListener {
 
