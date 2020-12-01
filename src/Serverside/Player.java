@@ -3,21 +3,12 @@ package Serverside;
 import java.io.*;
 import java.net.Socket;
 
-/**
- * Created by Max Erling
- * Date: 2020-11-13
- * Copyright: MIT
- * Class: Java20B
- */
 public class Player extends Thread implements Serializable {
     private String name;
     private Socket s;
     private Game game;
     private ObjectOutputStream out;
     private PlayerStatus playerStatus;
-
-
-
 
     public Player(Socket socket, String name, Game game) {
         this.name = name;
@@ -28,20 +19,20 @@ public class Player extends Thread implements Serializable {
         playerStatus.setPlayerName(this.name);
         playerStatus.setWaiting(true);
 
-
-        try  {
+        try {
             out = new ObjectOutputStream(s.getOutputStream());
             out.writeObject(welcomeMessage);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public String getUserName(){
-    return name;
+
+    public String getUserName() {
+        return name;
     }
 
 
-    public PlayerStatus getPlayerStatus(){
+    public PlayerStatus getPlayerStatus() {
         return playerStatus;
     }
 
@@ -57,12 +48,13 @@ public class Player extends Thread implements Serializable {
         try {
             out.reset();
             out.writeObject(playerStatus);
-            System.out.println("sending this " + playerStatus + "to " + name);
-        } catch (IOException ie) { ie.printStackTrace(); }
+        } catch (IOException ie) {
+            ie.printStackTrace();
+        }
     }
+
     public void run() {
-        try (ObjectInputStream in = new ObjectInputStream(s.getInputStream());)
-        {
+        try (ObjectInputStream in = new ObjectInputStream(s.getInputStream());) {
             game.playerIsConnected(this);
             out.writeObject(getUserName() + " is connected");
             game.giveName(this);
@@ -72,44 +64,26 @@ public class Player extends Thread implements Serializable {
             while ((fromClient = in.readObject()) != null) {
                 if (playerStatus.isSelectingCategory()) {
                     if (fromClient instanceof Category) {
-                        System.out.println("category has been selected");
                         game.categorySelected((Category) fromClient);
-
                     } else {
                         System.err.println("Expected category but received " + fromClient);
                     }
-                }
-
-               else if(playerStatus.isSelectingAnswer()) {
+                } else if (playerStatus.isSelectingAnswer()) {
                     if (fromClient instanceof String) {
                         try {
-
                             Thread.sleep(2000);
                             game.answerSelected(this, (String) fromClient);
-
-
 
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-
                     }
+                } else if (playerStatus.isRoundFinished() && !playerStatus.isGameFinished()) {
+                    game.playNextRound();
                 }
-
-               else if(playerStatus.isRoundFinished() && !playerStatus.isGameFinished()) {
-                   game.playNextRound();
-               }
-
             }
-
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
-
-
-
-
-
-
 }
