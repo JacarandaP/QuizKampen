@@ -254,8 +254,6 @@ public class QuestionDatabase {
     Map<Category, List<Question>> allQuestions = new HashMap<>();
 
     public QuestionDatabase() {
-
-
         sportQuestionList.add((q1sport));
         sportQuestionList.add(q2sport);
         sportQuestionList.add((q3sport));
@@ -267,7 +265,6 @@ public class QuestionDatabase {
         sportQuestionList.add((q9sport));
         sportQuestionList.add((q10sport));
 
-
         gameQuestionList.add((q1game));
         gameQuestionList.add(q2game);
         gameQuestionList.add((q3game));
@@ -278,7 +275,6 @@ public class QuestionDatabase {
         gameQuestionList.add(q8game);
         gameQuestionList.add((q9game));
         gameQuestionList.add((q10game));
-
 
         musicQuestionList.add((q1music));
         musicQuestionList.add(q2music);
@@ -304,23 +300,22 @@ public class QuestionDatabase {
 
         allQuestions.put(Category.SPORTS, sportQuestionList);
         allQuestions.put(Category.GAMING, gameQuestionList);
-        allQuestions.put(Category.MUSIC,musicQuestionList);
+        allQuestions.put(Category.MUSIC, musicQuestionList);
         allQuestions.put(Category.CULTURE, cultQuestionList);
 
     }
 
-
     public List<Question> getQuestionsByCategory(Category category) {
-    return allQuestions.get(category);
+        return allQuestions.get(category);
 
     }
 
-    public List<Category> getCategoryList(){
-        List <Category> categoryList = List.of(Category.SPORTS, Category.CULTURE, Category.GAMING, Category.MUSIC);
+    public List<Category> getCategoryList() {
+        List<Category> categoryList = List.of(Category.SPORTS, Category.CULTURE, Category.GAMING, Category.MUSIC);
         return categoryList;
     }
 
-    }
+}
 
 
 
