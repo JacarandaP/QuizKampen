@@ -4,12 +4,6 @@ import javax.swing.*;
 import javax.xml.transform.Result;
 import java.awt.*;
 
-/**
- * Created by Max Erling
- * Date: 2020-11-20
- * Copyright: MIT
- * Class: Java20B
- */
 public class ResultGUI extends JPanel {
 
     private int pxResult;
@@ -18,7 +12,7 @@ public class ResultGUI extends JPanel {
 
     private JLabel resultText = new JLabel();
     private JPanel scorePanel = new JPanel(new BorderLayout());
-    private JPanel centerPanel = new JPanel(new GridLayout(2,0));
+    private JPanel centerPanel = new JPanel(new GridLayout(2, 0));
 
     public ResultGUI() {
         scorePanel.setPreferredSize(new Dimension(500, 500));
@@ -26,16 +20,13 @@ public class ResultGUI extends JPanel {
         centerPanel.add(resultText);
         scorePanel.add(centerPanel, BorderLayout.CENTER);
         add(scorePanel);
-
-
-
     }
 
 
     public void setNamesAndScore(String pxName, int pxScore, String pyName, int pyScore) {
         playersResult.setText("<html>" + pxName + " Total Score: "
                 + pxScore + "<br/>" +
-                pyName +  " Total Score: " + pyScore + "</html>");
+                pyName + " Total Score: " + pyScore + "</html>");
 
         pxResult = pxScore;
         pyResult = pyScore;
@@ -51,5 +42,4 @@ public class ResultGUI extends JPanel {
             resultText.setText("It's a tie!!!");
         }
     }
-
 }
