@@ -35,17 +35,18 @@ public class Game {
         } else {
             throw new IllegalStateException("Only two players allowed");
         }
-
     }
 
-    public void giveName(Player player) {
-        if (playerX.equals(player)) {
-            player.getPlayerStatus().setPlayerName(player.getUserName());
-        } else if (playerY.equals(player)) {
-            player.getPlayerStatus().setPlayerName(player.getUserName());
-        }
-    }
+    public void startGame() {
+        playerX.getPlayerStatus().setWaiting(false);
+        playerX.getPlayerStatus().setCategoriesToSelectBetween(questionDatabase.getCategoryList());
+        playerX.getPlayerStatus().setSelectingCategory(true);
+        playerX.sendCurrentStatus();
 
+        playerY.getPlayerStatus().setWaiting(true);
+        playerY.getPlayerStatus().setReasonForWaiting("Waiting for other player to select a category");
+        playerY.sendCurrentStatus();
+    }
 
     public void categorySelected(Category category) {
         questionsInRound = getQuestions(category);
@@ -62,7 +63,6 @@ public class Game {
         playerY.getPlayerStatus().setSelectingAnswer(true);
         playerY.sendCurrentStatus();
     }
-
 
     public void answerSelected(Player player, String answer) {
         countRightAnswer(answer, player);
@@ -136,20 +136,17 @@ public class Game {
         throw new IllegalArgumentException("Unknown player");
     }
 
-    public void startGame() {
-        playerX.getPlayerStatus().setWaiting(false);
-        playerX.getPlayerStatus().setCategoriesToSelectBetween(questionDatabase.getCategoryList());
-        playerX.getPlayerStatus().setSelectingCategory(true);
-        playerX.sendCurrentStatus();
-
-        playerY.getPlayerStatus().setWaiting(true);
-        playerY.getPlayerStatus().setReasonForWaiting("Waiting for other player to select a category");
-        playerY.sendCurrentStatus();
-    }
-
     public void countRightAnswer(String answer, Player player) {
         if (player.getPlayerStatus().getQuestionToAnswer().isCorrectAnswer(answer)) {
             player.getPlayerStatus().incrementScore();
+        }
+    }
+
+    public void giveName(Player player) {
+        if (playerX.equals(player)) {
+            player.getPlayerStatus().setPlayerName(player.getUserName());
+        } else if (playerY.equals(player)) {
+            player.getPlayerStatus().setPlayerName(player.getUserName());
         }
     }
 }
